@@ -39,6 +39,8 @@ set nocompatible "Disable obsolete junk
    call arpeggio#load()   "Key chord binding!
 "}}}
 
+let mapleader = ","    "<Leader> = ','
+
 "Formating and Filetypes
 filetype plugin indent on
 au FileType * setlocal formatoptions-=o
@@ -65,6 +67,10 @@ else "}}}
    "colorscheme solarized
    "let g:solarized_termcolors=256
 endif "}}}
+
+"Clipboard settings{{{
+  set clipboard+=unnamedplus
+"}}}
 
 "Sanity options{{{
    syntax on
@@ -117,6 +123,7 @@ endif "}}}
      set aw             "Autosave when appropriate (not 7.3 specific)
    endif
    set backupdir=~/.vim-backup
+   set dir=~/.vim-backup
    " set number       "I like relative better
    set showmatch      "Flash matching parens
    set wildmenu       "Menubar
@@ -140,7 +147,7 @@ endif "}}}
    "augroup END
    set foldmethod=syntax
    set foldlevel=6
-   nnoremap <silent> <space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+   "nnoremap <silent> <space> @=(foldlevel('.')?'za':"\<Space>")<CR>
    au FileType vim set foldmethod=marker
    au FileType vim set foldlevel=0
 "}}}
