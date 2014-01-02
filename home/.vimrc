@@ -84,6 +84,13 @@ endif "}}}
    noremap Y y$
 "}}}
 
+"Paste options{{{
+   "TODO: Fix pasting so that everything uses the system buffer by default
+   "set paste
+   "set clipboard=unnamedplus
+   set go+=a
+"}}}
+
 "Indent settings{{{
    set smartindent  "Automatic indenting
    set autoindent
