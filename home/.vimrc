@@ -33,6 +33,7 @@ set nocompatible "Disable obsolete junk
    Bundle 'altercation/vim-colors-solarized'
    Bundle 'tpope/vim-markdown'
    Bundle 'tpope/vim-sensible'
+   Bundle 'ekalinin/Dockerfile.vim'
 
    "call showmarks#ShowMarks('global,enable') "Visual marks
    call arpeggio#load()   "Key chord binding!
@@ -253,7 +254,7 @@ endif "}}}
    map <Leader>A :Ack 
 
    "Ag default
-   let g:agprg="~/.utils/bin/ag --column"
+   let g:agprg="~/bin/ag --column"
    map <Leader>a :Ag 
 
 
