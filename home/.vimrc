@@ -11,10 +11,8 @@ set nocompatible "Disable obsolete junk
 
    "Vundle:
    Bundle 'Lokaltog/vim-easymotion'
-   Bundle 'Valloric/YouCompleteMe'
    Bundle 'airblade/vim-gitgutter'
    Bundle 'croaker/mustang-vim'
-   Bundle 'eiginn/netrw'
    Bundle 'gmarik/vundle'
    Bundle 'int3/vim-extradite'
    Bundle 'juanpabloaj/ShowMarks'
@@ -35,6 +33,11 @@ set nocompatible "Disable obsolete junk
    Bundle 'tpope/vim-sensible'
    Bundle 'ekalinin/Dockerfile.vim'
 
+   if version >= 704
+      Bundle 'Valloric/YouCompleteMe'
+      Bundle 'eiginn/netrw'
+   endif
+
    "call showmarks#ShowMarks('global,enable') "Visual marks
    call arpeggio#load()   "Key chord binding!
 "}}}
@@ -49,7 +52,6 @@ au BufReadPost *.as setlocal filetype=actionscript
 au BufNewFile,BufRead *.gradle setf groovy
 au BufNewFile,BufRead *.pp setf ruby
 
-set colorcolumn=120
 
 "GUI Options {{{
 au GUIEnter * set lines=43 columns=95
@@ -121,6 +123,7 @@ endif "}}}
      set undofile       "Persistant undo history
      set undodir=~/.vim-backup
      set aw             "Autosave when appropriate (not 7.3 specific)
+     set colorcolumn=120
    endif
    set backupdir=~/.vim-backup
    set dir=~/.vim-backup
