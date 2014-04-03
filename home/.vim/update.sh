@@ -9,4 +9,4 @@ else
   vundle_cmd='BundleUpdate'
 fi
 
-vim -s <(echo -e ":${vundle_cmd}\n:qa!\n")
+vim -e -c "${vundle_cmd}" -c 'qa!'
