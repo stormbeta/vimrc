@@ -38,6 +38,11 @@ set nocompatible "Disable obsolete junk
       Bundle 'eiginn/netrw'
    endif
 
+   if version <= 703
+      Bundle 'ervandew/supertab'
+      Bundle 'scrooloose/nerdtree'
+   endif
+
    "call showmarks#ShowMarks('global,enable') "Visual marks
    call arpeggio#load()   "Key chord binding!
 "}}}
