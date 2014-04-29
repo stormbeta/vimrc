@@ -32,6 +32,7 @@ set nocompatible "Disable obsolete junk
    Bundle 'tpope/vim-markdown'
    Bundle 'tpope/vim-sensible'
    Bundle 'ekalinin/Dockerfile.vim'
+   Bundle 'kchmck/vim-coffee-script'
 
    if version >= 704
       Bundle 'Valloric/YouCompleteMe'
