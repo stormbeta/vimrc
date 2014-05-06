@@ -22,6 +22,7 @@ set nocompatible "Disable obsolete junk
    Bundle 'millermedeiros/vim-statline'
    Bundle 'rking/ag.vim'
    Bundle 'scrooloose/nerdcommenter'
+   Bundle 'scrooloose/nerdtree'
    Bundle 'sjl/gundo.vim'
    Bundle 'tpope/vim-fugitive'
    Bundle 'tpope/vim-repeat'
