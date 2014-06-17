@@ -15,11 +15,14 @@ set nocompatible "Disable obsolete junk
    Bundle 'croaker/mustang-vim'
    Bundle 'gmarik/vundle'
    Bundle 'int3/vim-extradite'
-   Bundle 'juanpabloaj/ShowMarks'
+   "Bundle 'FriedSock/smeargle'
+   "Causes problems with buffer swapping
+   "Bundle 'juanpabloaj/ShowMarks'
    Bundle 'kana/vim-arpeggio'
    Bundle 'kien/ctrlp.vim'
    Bundle 'mileszs/ack.vim'
-   Bundle 'millermedeiros/vim-statline'
+   "Bundle 'millermedeiros/vim-statline'
+   Bundle 'bling/vim-airline'
    Bundle 'rking/ag.vim'
    Bundle 'scrooloose/nerdcommenter'
    Bundle 'scrooloose/nerdtree'
@@ -126,7 +129,7 @@ endif "}}}
 "Misc options {{{
    set number
    if version >= 703
-     set relativenumber "Relative line numbers
+     "set relativenumber "Relative line numbers
      set undofile       "Persistant undo history
      set undodir=~/.vim-backup
      set aw             "Autosave when appropriate (not 7.3 specific)
