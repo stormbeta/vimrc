@@ -6,47 +6,55 @@ set nocompatible "Disable obsolete junk
    "call pathogen#infect() "Modular plugin directories!
    filetype off
    set rtp+=~/.vim/bundle/vundle
-   call vundle#rc()
+   call vundle#begin()
    set runtimepath^=~/.vim/bundle/ctrlp.vim
 
+   "Plugin 'file:///~/.vim/bundle/vundle'
+
    "Vundle:
-   Bundle 'Lokaltog/vim-easymotion'
-   Bundle 'airblade/vim-gitgutter'
-   Bundle 'croaker/mustang-vim'
-   Bundle 'gmarik/vundle'
-   Bundle 'int3/vim-extradite'
-   "Bundle 'FriedSock/smeargle'
+   Plugin 'Lokaltog/vim-easymotion'
+   Plugin 'airblade/vim-gitgutter'
+   Plugin 'gmarik/vundle'
+   Plugin 'int3/vim-extradite'
+   "Plugin 'FriedSock/smeargle'
    "Causes problems with buffer swapping
-   "Bundle 'juanpabloaj/ShowMarks'
-   Bundle 'kana/vim-arpeggio'
-   Bundle 'kien/ctrlp.vim'
-   Bundle 'mileszs/ack.vim'
-   "Bundle 'millermedeiros/vim-statline'
-   Bundle 'bling/vim-airline'
-   Bundle 'rking/ag.vim'
-   Bundle 'scrooloose/nerdcommenter'
-   Bundle 'scrooloose/nerdtree'
-   Bundle 'sjl/gundo.vim'
-   Bundle 'tpope/vim-fugitive'
-   Bundle 'tpope/vim-repeat'
-   Bundle 'tpope/vim-surround'
-   Bundle 'vim-scripts/camelcasemotion'
-   Bundle 'vim-scripts/taglist.vim'
-   Bundle 'altercation/vim-colors-solarized'
-   Bundle 'tpope/vim-markdown'
-   Bundle 'tpope/vim-sensible'
-   Bundle 'ekalinin/Dockerfile.vim'
-   Bundle 'kchmck/vim-coffee-script'
+   "Plugin 'juanpabloaj/ShowMarks'
+   Plugin 'kana/vim-arpeggio'
+   Plugin 'kien/ctrlp.vim'
+   Plugin 'mileszs/ack.vim'
+   "Plugin 'millermedeiros/vim-statline'
+   Plugin 'bling/vim-airline'
+   Plugin 'rking/ag.vim'
+   Plugin 'scrooloose/nerdcommenter'
+   Plugin 'scrooloose/nerdtree'
+   Plugin 'sjl/gundo.vim'
+   Plugin 'tpope/vim-fugitive'
+   Plugin 'tpope/vim-repeat'
+   Plugin 'tpope/vim-surround'
+   Plugin 'vim-scripts/camelcasemotion'
+   Plugin 'vim-scripts/taglist.vim'
+   Plugin 'tpope/vim-markdown'
+   Plugin 'tpope/vim-sensible'
+
+   "Color themes
+   Plugin 'altercation/vim-colors-solarized'
+   Plugin 'croaker/mustang-vim'
+
+   "Syntax highlighting
+   Plugin 'kchmck/vim-coffee-script'
+   Plugin 'ekalinin/Dockerfile.vim'
 
    if version >= 704
-      Bundle 'Valloric/YouCompleteMe'
-      Bundle 'eiginn/netrw'
+      Plugin 'Valloric/YouCompleteMe'
+      Plugin 'eiginn/netrw'
    endif
 
    if version <= 703
-      Bundle 'ervandew/supertab'
-      Bundle 'scrooloose/nerdtree'
+      Plugin 'ervandew/supertab'
+      Plugin 'scrooloose/nerdtree'
    endif
+
+   call vundle#end()
 
    "call showmarks#ShowMarks('global,enable') "Visual marks
    call arpeggio#load()   "Key chord binding!
@@ -100,7 +108,7 @@ endif "}}}
    set list listchars=tab:→\ ,trail:· "Show trailing whitespace"
    set linebreak     "Don't split lines mid-word
    "Make Y behave like the other operator capitals
-   noremap Y y$
+   "noremap Y y$
 "}}}
 
 "Paste options{{{
