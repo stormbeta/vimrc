@@ -3,18 +3,16 @@ let mapleader = ","    "<Leader> = ','
 set nocompatible "Disable obsolete junk
 
 "Load plugins{{{
-   "call pathogen#infect() "Modular plugin directories!
    filetype off
    set rtp+=~/.vim/bundle/vundle
    call vundle#begin()
    set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-   "Plugin 'file:///~/.vim/bundle/vundle'
+   Plugin 'gmarik/vundle'
 
    "Vundle:
    Plugin 'Lokaltog/vim-easymotion'
    Plugin 'airblade/vim-gitgutter'
-   Plugin 'gmarik/vundle'
    Plugin 'int3/vim-extradite'
    "Plugin 'FriedSock/smeargle'
    "Causes problems with buffer swapping
@@ -51,7 +49,7 @@ set nocompatible "Disable obsolete junk
 
    if version <= 703
       Plugin 'ervandew/supertab'
-      Plugin 'scrooloose/nerdtree'
+      "Plugin 'scrooloose/nerdtree'
    endif
 
    call vundle#end()
@@ -68,6 +66,7 @@ au FileType * setlocal formatoptions-=o
 au BufReadPost *.cup setlocal filetype=java
 au BufReadPost *.as setlocal filetype=actionscript
 au BufNewFile,BufRead *.gradle setf groovy
+"Color puppet files as ruby
 au BufNewFile,BufRead *.pp setf ruby
 
 
@@ -81,6 +80,7 @@ if has('gui_running')
    set guioptions-=m      "Disable menubar
    set guioptions-=r    "Disable right scrollbar
    set guioptions-=L    "Disable left scrollbar
+   set relativenumber "Relative line numbers
 else "}}}
    "Console Options {{{
    "colorscheme relaxedgreen
@@ -89,7 +89,8 @@ else "}}}
 endif "}}}
 
 "Clipboard settings{{{
-  set clipboard+=unnamedplus
+  "Ensure vim uses system clipboard
+  set clipboard=unnamedplus,unnamed,autoselect
 "}}}
 
 "Sanity options{{{
@@ -111,13 +112,6 @@ endif "}}}
    "noremap Y y$
 "}}}
 
-"Paste options{{{
-   "TODO: Fix pasting so that everything uses the system buffer by default
-   "set paste
-   "set clipboard=unnamedplus
-   set go+=a
-"}}}
-
 "Indent settings{{{
    set smartindent  "Automatic indenting
    set autoindent
@@ -137,7 +131,6 @@ endif "}}}
 "Misc options {{{
    set number
    if version >= 703
-     "set relativenumber "Relative line numbers
      set undofile       "Persistant undo history
      set undodir=~/.vim-backup
      set aw             "Autosave when appropriate (not 7.3 specific)
@@ -181,7 +174,7 @@ endif "}}}
    "Surround:
    Arpeggio nmap oi ysiw
    "Saving:
-   Arpeggio nnoremap qwer :wq<cr>
+   "Arpeggio nnoremap qwer :wq<cr>
    Arpeggio nnoremap qw :w<cr>
    Arpeggio inoremap qw <Esc>:w<cr>
    "EasyMotion:
@@ -202,9 +195,9 @@ endif "}}}
    "inner word movement
    call arpeggio#map('nv','',1,'we',',w')
    call arpeggio#map('nv','',1,'WE',',b')
-   Arpeggio nnoremap jh ``
-   Arpeggio nnoremap nm :!make<cr>
-   Arpeggio nnoremap NM :!make test<cr>
+   "Arpeggio nnoremap jh ``
+   "Arpeggio nnoremap nm :!make<cr>
+   "Arpeggio nnoremap NM :!make test<cr>
 
 
    "Zen Coding{{{
@@ -235,7 +228,7 @@ endif "}}}
    "omap oe i,e
    "omap ob i,b
    "Write file as markdown
-    nnoremap <Leader>m :w<cr>:silent !Markdown.pl % > %.html<cr>
+    "nnoremap <Leader>m :w<cr>:silent !Markdown.pl % > %.html<cr>
 
    "Sudo write:
    cmap w!! w !sudo tee > /dev/null %
@@ -327,7 +320,6 @@ endif "}}}
     "autocmd FileType java inoremap . .<c-x><c-u>
    "autocmd FileType java 
     au FileType xjb set filetype=xml
-    au FileType cup set filetype=java
    " inoremap <a-j> <c-n>
    " inoremap <a-k> <c-p>
 
@@ -380,7 +372,7 @@ endif "}}}
    nmap j gj
    nmap k gk
    " inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
-   nnoremap <silent>O :set paste<cr>m`O<esc>``:set nopaste<cr>
+   "nnoremap <silent>O :set paste<cr>m`O<esc>``:set nopaste<cr>
    " inoremap jj <Esc>
    " inoremap kk <Esc>
 "}}}
@@ -391,13 +383,13 @@ endif "}}}
    nnoremap <F4> :GundoToggle<CR>
    nnoremap <F5> :NERDTreeToggle<CR>
    nnoremap <F6> :TlistToggle<CR>
-   nnoremap <f8> :silent make<CR><C-l>
-   inoremap <f8> <Esc>:silent make<CR><C-l>
-   nnoremap <s-f8> :execute CCompile()<CR>
-   inoremap <s-f8> <Esc>:execute CCompile()<CR>
+   "nnoremap <f8> :silent make<CR><C-l>
+   "inoremap <f8> <Esc>:silent make<CR><C-l>
+   "nnoremap <s-f8> :execute CCompile()<CR>
+   "inoremap <s-f8> <Esc>:execute CCompile()<CR>
    "Map F8 to make test target
-   nnoremap <f7> :silent make test<CR><C-l>
-   inoremap <f7> <Esc>:silent make test<CR><C-l>
+   "nnoremap <f7> :silent make test<CR><C-l>
+   "inoremap <f7> <Esc>:silent make test<CR><C-l>
    " nnoremap <f9> :VCSDiff<cr>
    " inoremap <f9> <Esc>:VCSDiff<cr>
    " nnoremap <S-f9> :VCSCommit<cr>
@@ -433,9 +425,9 @@ let g:statline_show_encoding = 0
 " 	:TlistClose
 " 	:cclose
 " endfunction
-function! CCompile()
-	:!gcc -Wall -Wextra -g %
-endfunction
+"function! CCompile()
+	":!gcc -Wall -Wextra -g %
+"endfunction
 
 "Single character insert without leaving normal mode!
 function! RepeatChar(char, count)
