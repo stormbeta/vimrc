@@ -12,7 +12,7 @@ set nocompatible "Disable obsolete junk
 
    "Vundle:
    Plugin 'Lokaltog/vim-easymotion'
-   Plugin 'airblade/vim-gitgutter'
+   Plugin 'mhinz/vim-signify'
    Plugin 'int3/vim-extradite'
    "Plugin 'FriedSock/smeargle'
    "Causes problems with buffer swapping
@@ -52,6 +52,11 @@ set nocompatible "Disable obsolete junk
       "Plugin 'scrooloose/nerdtree'
    endif
 
+   if has('gui_running')
+      "This is awful except in the GUI
+      Plugin 'joeytwiddle/sexy_scroller.vim'
+   endif
+
    call vundle#end()
 
    "call showmarks#ShowMarks('global,enable') "Visual marks
@@ -75,7 +80,7 @@ au GUIEnter * set lines=43 columns=95
 if has('gui_running')
    colorscheme mustang
    set cursorline "highlights current line, looks terrible in console
-   " set guifont=Monaco\ 12 "Warning: special font
+   set guifont=Monaco\ 12 "Warning: special font
    set guioptions-=T      "Disable toolbar
    set guioptions-=m      "Disable menubar
    set guioptions-=r    "Disable right scrollbar
@@ -85,12 +90,18 @@ else "}}}
    "Console Options {{{
    "colorscheme relaxedgreen
    "colorscheme solarized
-   "let g:solarized_termcolors=256
+   let g:solarized_termcolors=256
 endif "}}}
 
 "Clipboard settings{{{
-  "Ensure vim uses system clipboard
+  "Ensure vim uses system clipboard (tested on OSX)
   set clipboard=unnamedplus,unnamed,autoselect
+"}}}
+
+"Theme settings{{{
+   let g:airline#extensions#tabline#enabled = 1
+   let g:airline#extensions#tabline#left_sep = ' '
+   let g:airline#extensions#tabline#left_alt_sep = '|'
 "}}}
 
 "Sanity options{{{
@@ -129,7 +140,7 @@ endif "}}}
 "}}}
 
 "Misc options {{{
-   set number
+   set number         "Relative is too slow except in the GUI
    if version >= 703
      set undofile       "Persistant undo history
      set undodir=~/.vim-backup
@@ -138,7 +149,6 @@ endif "}}}
    endif
    set backupdir=~/.vim-backup
    set dir=~/.vim-backup
-   " set number       "I like relative better
    set showmatch      "Flash matching parens
    set wildmenu       "Menubar
    set wildmode=list:longest
@@ -275,7 +285,7 @@ endif "}}}
    map <Leader>A :Ack 
 
    "Ag default
-   let g:agprg="~/bin/ag --column"
+   let g:agprg="ag --column"
    map <Leader>a :Ag 
 
 
