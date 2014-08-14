@@ -33,6 +33,7 @@ set nocompatible "Disable obsolete junk
    Plugin 'vim-scripts/taglist.vim'
    Plugin 'tpope/vim-markdown'
    Plugin 'tpope/vim-sensible'
+   Plugin 'yegappan/mru'
 
    "Color themes
    Plugin 'altercation/vim-colors-solarized'
