@@ -244,6 +244,9 @@ endif "}}}
    "Sudo write:
    cmap w!! w !sudo tee > /dev/null %
 
+   "Recent file list
+   nnoremap <Leader>O :MRU<cr>
+
    "This only works if the terminal is set correctly
    "Saves: and returns to command mode
    inoremap <c-s> <Esc>:w<cr>
