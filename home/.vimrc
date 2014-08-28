@@ -80,16 +80,13 @@ au BufNewFile,BufRead *.pp setf ruby
 au GUIEnter * set lines=43 columns=95
 if has('gui_running')
   colorscheme mustang
-  set cursorline "highlights current line, looks terrible in console
+  set cursorline         "highlights current line, looks terrible in console
   set guifont=Monaco\ 12 "Warning: special font
   set guioptions-=T      "Disable toolbar
   set guioptions-=m      "Disable menubar
-  set guioptions-=r    "Disable right scrollbar
-  set guioptions-=L    "Disable left scrollbar
-  set relativenumber "Relative line numbers
-else "}}}
-  "Console Options {{{
-  let g:solarized_termcolors=256
+  set guioptions-=r      "Disable right scrollbar
+  set guioptions-=L      "Disable left scrollbar
+  set relativenumber     "Relative line numbers
 endif "}}}
 
 "Clipboard settings{{{
@@ -97,29 +94,39 @@ endif "}}}
   set clipboard=unnamedplus,unnamed,autoselect
 "}}}
 
-"Theme settings{{{
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#left_sep = ' '
-  let g:airline#extensions#tabline#left_alt_sep = '|'
-"}}}
-
 "Sanity options{{{
   syntax on
   set backspace=indent,eol,start
-  set t_kb=      "Set backspace key just in case system has weird default
-  set ruler        "Character/line counts
-  set mouse=a      "Ensure automatic mouse integration is enabled
+  set t_kb=         "Set backspace key just in case system has weird default
+  set ruler           "Character/line counts
+  set mouse=a         "Ensure automatic mouse integration is enabled
   set background=dark "Ensure dark background type
-  set nostartofline "Attempt to preserve cursor position
-  set autoread      "Auto-update buffers if file is externally modified
-  set hidden        "Make buffer switching work normally
-  set showmode      "Ensure current mode is displayed
-  set showcmd       "Display normal mode cmds in lower left
-  set tildeop       "Ensure ~ behaves like an operator
+  set nostartofline   "Attempt to preserve cursor position
+  set autoread        "Auto-update buffers if file is externally modified
+  set hidden          "Make buffer switching work normally
+  set showmode        "Ensure current mode is displayed
+  set showcmd         "Display normal mode cmds in lower left
+  set tildeop         "Ensure ~ behaves like an operator
   set list listchars=tab:→\ ,trail:· "Show trailing whitespace"
   set linebreak     "Don't split lines mid-word
   "Make Y behave like the other operator capitals
   "noremap Y y$
+"}}}
+
+"Theme and color settings{{{
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#left_sep = ' '
+  let g:airline#extensions#tabline#left_alt_sep = '|'
+  let g:solarized_termcolors=256
+  set t_Co=256
+
+  colorscheme vividchalk
+
+  "Allows transparent terminal background to persist within vim
+  highlight Normal ctermbg=none
+  highlight NonText ctermbg=none
+
+  highlight Comment cterm=italic
 "}}}
 
 "Indent settings{{{
@@ -473,13 +480,3 @@ endfunction
 
 " Start the find and replace command across the entire file
 vnoremap <C-r> <Esc>:%s/<c-r>=GetVisual()<cr>/
-
-"Color theme options
-set t_Co=256
-colorscheme vividchalk
-
-"Allows transparent terminal background to persist within vim
-highlight Normal ctermbg=none
-highlight NonText ctermbg=none
-
-highlight Comment cterm=italic
