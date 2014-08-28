@@ -3,65 +3,66 @@ let mapleader = ","    "<Leader> = ','
 set nocompatible "Disable obsolete junk
 
 "Load plugins{{{
-   filetype off
-   set rtp+=~/.vim/bundle/vundle
-   call vundle#begin()
-   set runtimepath^=~/.vim/bundle/ctrlp.vim
+  filetype off
+  set rtp+=~/.vim/bundle/vundle
+  call vundle#begin()
+  set runtimepath^=~/.vim/bundle/ctrlp.vim
 
-   Plugin 'gmarik/vundle'
+  Plugin 'gmarik/vundle'
 
-   "Vundle:
-   Plugin 'Lokaltog/vim-easymotion'
-   Plugin 'mhinz/vim-signify'
-   Plugin 'int3/vim-extradite'
-   "Plugin 'FriedSock/smeargle'
-   "Causes problems with buffer swapping
-   "Plugin 'juanpabloaj/ShowMarks'
-   Plugin 'kana/vim-arpeggio'
-   Plugin 'kien/ctrlp.vim'
-   Plugin 'mileszs/ack.vim'
-   "Plugin 'millermedeiros/vim-statline'
-   Plugin 'bling/vim-airline'
-   Plugin 'rking/ag.vim'
-   Plugin 'scrooloose/nerdcommenter'
-   Plugin 'scrooloose/nerdtree'
-   Plugin 'sjl/gundo.vim'
-   Plugin 'tpope/vim-fugitive'
-   Plugin 'tpope/vim-repeat'
-   Plugin 'tpope/vim-surround'
-   Plugin 'vim-scripts/camelcasemotion'
-   Plugin 'vim-scripts/taglist.vim'
-   Plugin 'tpope/vim-markdown'
-   Plugin 'tpope/vim-sensible'
-   Plugin 'yegappan/mru'
+  "Vundle:
+  Plugin 'Lokaltog/vim-easymotion'
+  Plugin 'mhinz/vim-signify'
+  Plugin 'int3/vim-extradite'
+  "Plugin 'FriedSock/smeargle'
+  "Causes problems with buffer swapping
+  "Plugin 'juanpabloaj/ShowMarks'
+  Plugin 'kana/vim-arpeggio'
+  Plugin 'kien/ctrlp.vim'
+  Plugin 'mileszs/ack.vim'
+  "Plugin 'millermedeiros/vim-statline'
+  Plugin 'bling/vim-airline'
+  Plugin 'rking/ag.vim'
+  Plugin 'scrooloose/nerdcommenter'
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'sjl/gundo.vim'
+  Plugin 'tpope/vim-fugitive'
+  Plugin 'tpope/vim-repeat'
+  Plugin 'tpope/vim-surround'
+  Plugin 'vim-scripts/camelcasemotion'
+  Plugin 'vim-scripts/taglist.vim'
+  Plugin 'tpope/vim-markdown'
+  Plugin 'tpope/vim-sensible'
+  Plugin 'yegappan/mru'
 
-   "Color themes
-   Plugin 'altercation/vim-colors-solarized'
-   Plugin 'croaker/mustang-vim'
+  "Color themes
+  Plugin 'altercation/vim-colors-solarized'
+  Plugin 'croaker/mustang-vim'
+  Plugin 'tpope/vim-vividchalk'
 
-   "Syntax highlighting
-   Plugin 'kchmck/vim-coffee-script'
-   Plugin 'ekalinin/Dockerfile.vim'
+  "Syntax highlighting
+  Plugin 'kchmck/vim-coffee-script'
+  Plugin 'ekalinin/Dockerfile.vim'
 
-   if version >= 704
-      Plugin 'Valloric/YouCompleteMe'
-      Plugin 'eiginn/netrw'
-   endif
+  if version >= 704
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'eiginn/netrw'
+  endif
 
-   if version <= 703
-      Plugin 'ervandew/supertab'
-      "Plugin 'scrooloose/nerdtree'
-   endif
+  if version <= 703
+    Plugin 'ervandew/supertab'
+    "Plugin 'scrooloose/nerdtree'
+  endif
 
-   if has('gui_running')
-      "This is awful except in the GUI
-      Plugin 'joeytwiddle/sexy_scroller.vim'
-   endif
+  if has('gui_running')
+    "This is awful except in the GUI
+    Plugin 'joeytwiddle/sexy_scroller.vim'
+  endif
 
-   call vundle#end()
+  call vundle#end()
 
-   "call showmarks#ShowMarks('global,enable') "Visual marks
-   call arpeggio#load()   "Key chord binding!
+  "call showmarks#ShowMarks('global,enable') "Visual marks
+  call arpeggio#load()   "Key chord binding!
 "}}}
 
 let mapleader = ","    "<Leader> = ','
@@ -75,23 +76,20 @@ au BufNewFile,BufRead *.gradle setf groovy
 "Color puppet files as ruby
 au BufNewFile,BufRead *.pp setf ruby
 
-
 "GUI Options {{{
 au GUIEnter * set lines=43 columns=95
 if has('gui_running')
-   colorscheme mustang
-   set cursorline "highlights current line, looks terrible in console
-   set guifont=Monaco\ 12 "Warning: special font
-   set guioptions-=T      "Disable toolbar
-   set guioptions-=m      "Disable menubar
-   set guioptions-=r    "Disable right scrollbar
-   set guioptions-=L    "Disable left scrollbar
-   set relativenumber "Relative line numbers
+  colorscheme mustang
+  set cursorline "highlights current line, looks terrible in console
+  set guifont=Monaco\ 12 "Warning: special font
+  set guioptions-=T      "Disable toolbar
+  set guioptions-=m      "Disable menubar
+  set guioptions-=r    "Disable right scrollbar
+  set guioptions-=L    "Disable left scrollbar
+  set relativenumber "Relative line numbers
 else "}}}
-   "Console Options {{{
-   "colorscheme relaxedgreen
-   "colorscheme solarized
-   let g:solarized_termcolors=256
+  "Console Options {{{
+  let g:solarized_termcolors=256
 endif "}}}
 
 "Clipboard settings{{{
@@ -100,214 +98,214 @@ endif "}}}
 "}}}
 
 "Theme settings{{{
-   let g:airline#extensions#tabline#enabled = 1
-   let g:airline#extensions#tabline#left_sep = ' '
-   let g:airline#extensions#tabline#left_alt_sep = '|'
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#left_sep = ' '
+  let g:airline#extensions#tabline#left_alt_sep = '|'
 "}}}
 
 "Sanity options{{{
-   syntax on
-   set backspace=indent,eol,start
-   set t_kb=      "Set backspace key just in case system has weird default
-   set ruler        "Character/line counts
-   set mouse=a      "Ensure automatic mouse integration is enabled
-   set background=dark "Ensure dark background type
-   set nostartofline "Attempt to preserve cursor position
-   set autoread      "Auto-update buffers if file is externally modified
-   set hidden        "Make buffer switching work normally
-   set showmode      "Ensure current mode is displayed
-   set showcmd       "Display normal mode cmds in lower left
-   set tildeop       "Ensure ~ behaves like an operator
-   set list listchars=tab:→\ ,trail:· "Show trailing whitespace"
-   set linebreak     "Don't split lines mid-word
-   "Make Y behave like the other operator capitals
-   "noremap Y y$
+  syntax on
+  set backspace=indent,eol,start
+  set t_kb=      "Set backspace key just in case system has weird default
+  set ruler        "Character/line counts
+  set mouse=a      "Ensure automatic mouse integration is enabled
+  set background=dark "Ensure dark background type
+  set nostartofline "Attempt to preserve cursor position
+  set autoread      "Auto-update buffers if file is externally modified
+  set hidden        "Make buffer switching work normally
+  set showmode      "Ensure current mode is displayed
+  set showcmd       "Display normal mode cmds in lower left
+  set tildeop       "Ensure ~ behaves like an operator
+  set list listchars=tab:→\ ,trail:· "Show trailing whitespace"
+  set linebreak     "Don't split lines mid-word
+  "Make Y behave like the other operator capitals
+  "noremap Y y$
 "}}}
 
 "Indent settings{{{
-   set smartindent  "Automatic indenting
-   set autoindent
-   set tabstop=2    "Number of spaces a tab mimics
-   set softtabstop=2 "Ensure spaces can be easily deleted
-   set shiftwidth=2 "?
-   set expandtab   "Enable for tabs to become spaces
+  set smartindent  "Automatic indenting
+  set autoindent
+  set tabstop=2    "Number of spaces a tab mimics
+  set softtabstop=2 "Ensure spaces can be easily deleted
+  set shiftwidth=2 "?
+  set expandtab   "Enable for tabs to become spaces
 "}}}
 
 "Search options{{{
-   set hlsearch   "Enable highlighting of matches
-   set incsearch  "Enable incremental search
-   set ignorecase "Ignore case when all lowercase
-   set smartcase  "Otherwise enable case sensitivity
+  set hlsearch   "Enable highlighting of matches
+  set incsearch  "Enable incremental search
+  set ignorecase "Ignore case when all lowercase
+  set smartcase  "Otherwise enable case sensitivity
 "}}}
 
 "Misc options {{{
-   set number         "Relative is too slow except in the GUI
-   if version >= 703
-     set undofile       "Persistant undo history
-     set undodir=~/.vim-backup
-     set aw             "Autosave when appropriate (not 7.3 specific)
-     set colorcolumn=120
-   endif
-   set backupdir=~/.vim-backup
-   set dir=~/.vim-backup
-   set showmatch      "Flash matching parens
-   set wildmenu       "Menubar
-   set wildmode=list:longest
-   set scrolloff=4    "Auto-scrolls screen near edges
-   set updatetime=2000 "Affects visual marker indicators
-   set modelines=0    "Modelines are security risk
-   set viminfo='100,<50,s10,h,n~/.viminfo
-   set diffopt+=iwhite "Ignore whitespace in diff mode
-   "Go to last cursor position when reopening file
-   au BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \ exe "normal! g`\"" |
-    \ endif
+  set number         "Relative is too slow except in the GUI
+  if version >= 703
+    set undofile       "Persistant undo history
+    set undodir=~/.vim-backup
+    set aw             "Autosave when appropriate (not 7.3 specific)
+    set colorcolumn=120
+  endif
+  set backupdir=~/.vim-backup
+  set dir=~/.vim-backup
+  set showmatch      "Flash matching parens
+  set wildmenu       "Menubar
+  set wildmode=list:longest
+  set scrolloff=4    "Auto-scrolls screen near edges
+  set updatetime=2000 "Affects visual marker indicators
+  set modelines=0    "Modelines are security risk
+  set viminfo='100,<50,s10,h,n~/.viminfo
+  set diffopt+=iwhite "Ignore whitespace in diff mode
+  "Go to last cursor position when reopening file
+  au BufReadPost *
+   \ if line("'\"") > 1 && line("'\"") <= line("$") |
+   \ exe "normal! g`\"" |
+   \ endif
 "}}}
 
 "Fold settings {{{
-   "augroup vimrc
-      "au BufReadPre * setlocal foldmethod=syntax
-      "au BufWinEnter * setlocal foldmethod=marker
-   "augroup END
-   set foldmethod=syntax
-   set foldlevel=6
-   "nnoremap <silent> <space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-   au FileType vim set foldmethod=marker
-   au FileType vim set foldlevel=0
+  "augroup vimrc
+    "au BufReadPre * setlocal foldmethod=syntax
+    "au BufWinEnter * setlocal foldmethod=marker
+  "augroup END
+  set foldmethod=syntax
+  set foldlevel=6
+  "nnoremap <silent> <space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+  au FileType vim set foldmethod=marker
+  au FileType vim set foldlevel=0
 "}}}
 
 "Commands (ARPEGGIO) {{{
-   "Arpeggio: Bindings (must come first)
-   "Binding operator keys is bad idea =/
-   "Arpeggio nnoremap ewr :Extradite<cr>
-   " Arpeggio nnoremap qwe :NERDTreeToggle<cr>
-   "Surround:
-   Arpeggio nmap oi ysiw
-   "Saving:
-   "Arpeggio nnoremap qwer :wq<cr>
-   Arpeggio nnoremap qw :w<cr>
-   Arpeggio inoremap qw <Esc>:w<cr>
-   "EasyMotion:
-   Arpeggio nnoremap we <Leader>w
-   "Comment:
-   call arpeggio#map('nv','',1,'re',',c ')
-   "Arpeggio nnoremap fg [{zf]}
-   "au FileType java Arpeggio imap ui <c-x><c-u>
-   Arpeggio nnoremap /. :%!perl -pi -e 's//'<left><left>
-   Arpeggio vnoremap /. :!perl -pi -e 's//'<left><left>
-   "Buffers: mappings{{{
-      "call arpeggio#map('nv','',0,
-   "}}}
-   Arpeggio inoremap kj <Esc>
-   Arpeggio vnoremap kj <Esc>
-   Arpeggio inoremap kl <c-n>
-   Arpeggio inoremap KL <c-p>
-   "inner word movement
-   call arpeggio#map('nv','',1,'we',',w')
-   call arpeggio#map('nv','',1,'WE',',b')
-   "Arpeggio nnoremap jh ``
-   "Arpeggio nnoremap nm :!make<cr>
-   "Arpeggio nnoremap NM :!make test<cr>
+  "Arpeggio: Bindings (must come first)
+  "Binding operator keys is bad idea =/
+  "Arpeggio nnoremap ewr :Extradite<cr>
+  " Arpeggio nnoremap qwe :NERDTreeToggle<cr>
+  "Surround:
+  Arpeggio nmap oi ysiw
+  "Saving:
+  "Arpeggio nnoremap qwer :wq<cr>
+  Arpeggio nnoremap qw :w<cr>
+  Arpeggio inoremap qw <Esc>:w<cr>
+  "EasyMotion:
+  Arpeggio nnoremap we <Leader>w
+  "Comment:
+  call arpeggio#map('nv','',1,'re',',c ')
+  "Arpeggio nnoremap fg [{zf]}
+  "au FileType java Arpeggio imap ui <c-x><c-u>
+  Arpeggio nnoremap /. :%!perl -pi -e 's//'<left><left>
+  Arpeggio vnoremap /. :!perl -pi -e 's//'<left><left>
+  "Buffers: mappings{{{
+    "call arpeggio#map('nv','',0,
+  "}}}
+  Arpeggio inoremap kj <Esc>
+  Arpeggio vnoremap kj <Esc>
+  Arpeggio inoremap kl <c-n>
+  Arpeggio inoremap KL <c-p>
+  "inner word movement
+  call arpeggio#map('nv','',1,'we',',w')
+  call arpeggio#map('nv','',1,'WE',',b')
+  "Arpeggio nnoremap jh ``
+  "Arpeggio nnoremap nm :!make<cr>
+  "Arpeggio nnoremap NM :!make test<cr>
 
 
-   "Zen Coding{{{
-      " au FileType html,xml Arpeggio imap uio <c-y>,>
-      "au FileType html,xml Arpeggio imap ui <c-y>,<cr><Esc>ko
-      "au FileType html,xml Arpeggio imap uio <c-y>,
-      " au FileType html,xml Arpeggio vmap ui <c-y>,
-      "au FileType html,xml Arpeggio imap op <c-y>n
-      "au FileType html,xml Arpeggio imap io <c-y>N
-      "au FileType html,xml Arpeggio nmap re <c-y>/
-   "}}}
+  "Zen Coding{{{
+    " au FileType html,xml Arpeggio imap uio <c-y>,>
+    "au FileType html,xml Arpeggio imap ui <c-y>,<cr><Esc>ko
+    "au FileType html,xml Arpeggio imap uio <c-y>,
+    " au FileType html,xml Arpeggio vmap ui <c-y>,
+    "au FileType html,xml Arpeggio imap op <c-y>n
+    "au FileType html,xml Arpeggio imap io <c-y>N
+    "au FileType html,xml Arpeggio nmap re <c-y>/
+  "}}}
 "}}}
 
 "Commands (Normal) {{{
-   "Sane substitution
-   vnoremap <Leader>/ :s/\%V/<Left>
-   "nnoremap <Leader>/ :%s/\V/
-   "Easier command entry
-   nnoremap ; :
-   vnoremap ; :
-   nnoremap q; q:
-   vnoremap q; q:
-   "nnoremap <space> <cr>
-   "CamelCaseMovement: Plugin
-   omap ow i,w
-   vmap ow i,w
-   "These don't work?
-   "omap oe i,e
-   "omap ob i,b
-   "Write file as markdown
-    "nnoremap <Leader>m :w<cr>:silent !Markdown.pl % > %.html<cr>
+  "Sane substitution
+  vnoremap <Leader>/ :s/\%V/<Left>
+  "nnoremap <Leader>/ :%s/\V/
+  "Easier command entry
+  nnoremap ; :
+  vnoremap ; :
+  nnoremap q; q:
+  vnoremap q; q:
+  "nnoremap <space> <cr>
+  "CamelCaseMovement: Plugin
+  omap ow i,w
+  vmap ow i,w
+  "These don't work?
+  "omap oe i,e
+  "omap ob i,b
+  "Write file as markdown
+   "nnoremap <Leader>m :w<cr>:silent !Markdown.pl % > %.html<cr>
 
-   "Sudo write:
-   cmap w!! w !sudo tee > /dev/null %
+  "Sudo write:
+  cmap w!! w !sudo tee > /dev/null %
 
-   "Recent file list
-   nnoremap <Leader>O :MRU<cr>
+  "Recent file list
+  nnoremap <Leader>O :MRU<cr>
 
-   "This only works if the terminal is set correctly
-   "Saves: and returns to command mode
-   inoremap <c-s> <Esc>:w<cr>
-   nnoremap <c-s> :w<cr>
+  "This only works if the terminal is set correctly
+  "Saves: and returns to command mode
+  inoremap <c-s> <Esc>:w<cr>
+  nnoremap <c-s> :w<cr>
 
-   nnoremap <C-w>v <C-w>v<C-w>l
-   "Clear searches
-   nnoremap <Leader><space> :noh<CR>
+  nnoremap <C-w>v <C-w>v<C-w>l
+  "Clear searches
+  nnoremap <Leader><space> :noh<CR>
 
-   "Fugitive bindings (git)
-   nnoremap <Leader>gw :Gwrite<cr>
-   nnoremap <Leader>gc :Gcommit<cr>
-   nnoremap <Leader>gC :Gcommit -a<cr>
-   nnoremap <Leader>gd :Gdiff<cr>
-   nnoremap <Leader>gvu :Git svn rebase<cr>
-   "nnoremap <Leader>gx :Gedit<cr><C-w>h :bd<cr>
-   nnoremap <Leader>gs :Gstatus<cr>
-   nnoremap <Leader>gvc :Git svn dcommit<cr>
-   nnoremap <Leader>gl :Extradite<cr>
-   nnoremap <Leader>gb :Git branch<cr>
-   nnoremap <Leader>gB :Git checkout 
-   nnoremap <Leader>gu :Git fetch
-   nnoremap <Leader>gp :Git pull
+  "Fugitive bindings (git)
+  nnoremap <Leader>gw :Gwrite<cr>
+  nnoremap <Leader>gc :Gcommit<cr>
+  nnoremap <Leader>gC :Gcommit -a<cr>
+  nnoremap <Leader>gd :Gdiff<cr>
+  nnoremap <Leader>gvu :Git svn rebase<cr>
+  "nnoremap <Leader>gx :Gedit<cr><C-w>h :bd<cr>
+  nnoremap <Leader>gs :Gstatus<cr>
+  nnoremap <Leader>gvc :Git svn dcommit<cr>
+  nnoremap <Leader>gl :Extradite<cr>
+  nnoremap <Leader>gb :Git branch<cr>
+  nnoremap <Leader>gB :Git checkout 
+  nnoremap <Leader>gu :Git fetch
+  nnoremap <Leader>gp :Git pull
 
-   "Like alt+tab, but for buffers
-   nnoremap <silent> \ :bnext<cr>
-   nnoremap <silent> <s-\> :bprev<cr>
+  "Like alt+tab, but for buffers
+  nnoremap <silent> \ :bnext<cr>
+  nnoremap <silent> <s-\> :bprev<cr>
 
-   "Open: fuzzy matching
-   nnoremap <Leader>o :CtrlP<CR>
-   nnoremap <Leader>i :CtrlPTag<CR>
-   nnoremap <Leader>p :CtrlPBuffer<CR>
-   "let g:ctrlp_extensions = [ 'tag' ]
-   "nnoremap <Leader>
-   "Comment: toggle
-   "nmap <Leader>, ,c 
-   "vmap <Leader>, ,c 
+  "Open: fuzzy matching
+  nnoremap <Leader>o :CtrlP<CR>
+  nnoremap <Leader>i :CtrlPTag<CR>
+  nnoremap <Leader>p :CtrlPBuffer<CR>
+  "let g:ctrlp_extensions = [ 'tag' ]
+  "nnoremap <Leader>
+  "Comment: toggle
+  "nmap <Leader>, ,c 
+  "vmap <Leader>, ,c 
 
-   "Ack backup
-   map <Leader>A :Ack 
+  "Ack backup
+  map <Leader>A :Ack 
 
-   "Ag default
-   let g:agprg="ag --column"
-   map <Leader>a :Ag 
+  "Ag default
+  let g:agprg="ag --column"
+  map <Leader>a :Ag 
 
 
 
-   "EasyMotion:
-   let g:EasyMotion_leader_key = '<Leader>w'
+  "EasyMotion:
+  let g:EasyMotion_leader_key = '<Leader>w'
 
-   " Repeat last command action?
-   "inoremap <c-.> <Esc>:<c-p><cr>
-   "nnoremap <c-.> <Esc>:<c-p><cr>
+  " Repeat last command action?
+  "inoremap <c-.> <Esc>:<c-p><cr>
+  "nnoremap <c-.> <Esc>:<c-p><cr>
 
-   "IDE MODE: ENGAGE
-   "nnoremap <f2> :copen<cr>:TlistToggle<cr><c-w>k<c-w>v<c-w>l
-   "nnoremap <f3> :vertical copen<cr>:TlistToggle<cr><c-w>h:split<cr>
-   nnoremap <C-\> :tabn<cr>
+  "IDE MODE: ENGAGE
+  "nnoremap <f2> :copen<cr>:TlistToggle<cr><c-w>k<c-w>v<c-w>l
+  "nnoremap <f3> :vertical copen<cr>:TlistToggle<cr><c-w>h:split<cr>
+  nnoremap <C-\> :tabn<cr>
 
-   "Macros: {{{
-   "}}}
+  "Macros: {{{
+  "}}}
 "}}}
 
 "Regex stuff {{{
@@ -318,114 +316,97 @@ endif "}}}
 "}}}
 
 "Completion {{{
-   "set completeopt+=longest,menu
+  "set completeopt+=longest,menu
 
-   "au FileType java let g:neocomplcache_enable_at_startup=0
-   "au FileType java call NeoComplCacheDisable()
-   "let g:acp_enableAtStartup = 0
-   "au FileType java let g:acp_enableAtStartup=0
-   " autocmd BufRead,BufNew,FileWriteCmd call showmarks#ShowMarks('global,enable')
-    "au FileType java let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
-    "autocmd FileType java let g:acp_behaviorUserDefinedFunction = "<c-x><c-u>"
-   " autocmd FileType java let g:neocomplcache_enable_at_startup = 1
-   " autocmd FileType java let g:acp_enableAtStartup = 1
-   " let g:neocomplcache_enable_auto_select=1
-   " autocmd FileType java setlocal omnifunc="<c-x><c-u>"
-    "autocmd FileType java inoremap . .<c-x><c-u>
-   "autocmd FileType java 
-    au FileType xjb set filetype=xml
-   " inoremap <a-j> <c-n>
-   " inoremap <a-k> <c-p>
+  "au FileType java let g:neocomplcache_enable_at_startup=0
+  "au FileType java call NeoComplCacheDisable()
+  "let g:acp_enableAtStartup = 0
+  "au FileType java let g:acp_enableAtStartup=0
+  " autocmd BufRead,BufNew,FileWriteCmd call showmarks#ShowMarks('global,enable')
+   "au FileType java let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+   "autocmd FileType java let g:acp_behaviorUserDefinedFunction = "<c-x><c-u>"
+  " autocmd FileType java let g:neocomplcache_enable_at_startup = 1
+  " autocmd FileType java let g:acp_enableAtStartup = 1
+  " let g:neocomplcache_enable_auto_select=1
+  " autocmd FileType java setlocal omnifunc="<c-x><c-u>"
+   "autocmd FileType java inoremap . .<c-x><c-u>
+  "autocmd FileType java 
+   au FileType xjb set filetype=xml
+  " inoremap <a-j> <c-n>
+  " inoremap <a-k> <c-p>
 
-   " C++OmniCompl plugin settings
-   " set tags+=~/.vim/tags/cpptags
-   " let OmniCpp_NamespaceSearch = 1
-   " let OmniCpp_GlobalScopeSearch = 1
-   " let OmniCpp_ShowAccess = 1
-   " let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-   " let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-   " let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-   " let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-   " let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-   " au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-   " set completeopt=menuone,menu,longest,preview
+  " C++OmniCompl plugin settings
+  " set tags+=~/.vim/tags/cpptags
+  " let OmniCpp_NamespaceSearch = 1
+  " let OmniCpp_GlobalScopeSearch = 1
+  " let OmniCpp_ShowAccess = 1
+  " let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+  " let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+  " let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+  " let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+  " let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+  " au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+  " set completeopt=menuone,menu,longest,preview
 "}}}
 
 "Movement {{{
-   "Make searching center on results
-   noremap n nzz
-   noremap N Nzz
-   "TODO check if quickfix window is open
-   " Use the more accessible tab key to jump b/w brackets
-   nmap <tab> %
-   vmap <tab> %
-   "Simplify window switching
-   nnoremap <Leader>j <C-w>j
-   nnoremap <Leader>k <C-w>k
-   nnoremap <Leader>h <C-w>h
-   nnoremap <Leader>l <C-w>l
-   "Swap these, the ` version of the jump commands is much more useful than '
-   nnoremap ` '
-   nnoremap ' `
-   "Remap pgup/pgdwn and home/end variants to convenient keys
-   nnoremap <c-j> <c-d>
-   nnoremap <c-k> <c-u>
-   vnoremap <c-j> <c-d>
-   vnoremap <c-k> <c-u>
-   nnoremap <a-j> <c-d>
-   nnoremap <a-k> <c-u>
-   nnoremap <a-h> ^
-   nnoremap <a-l> $
-   nnoremap <c-h> ^
-   nnoremap <c-l> $
-   vnoremap <a-h> ^
-   vnoremap <a-l> $
-   vnoremap <c-h> ^
-   vnoremap <c-l> $
-   "Use 'screen' lines instead of 'file' lines for movement
-   nmap j gj
-   nmap k gk
-   " inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
-   "nnoremap <silent>O :set paste<cr>m`O<esc>``:set nopaste<cr>
-   " inoremap jj <Esc>
-   " inoremap kk <Esc>
+  "Make searching center on results
+  noremap n nzz
+  noremap N Nzz
+  "TODO check if quickfix window is open
+  " Use the more accessible tab key to jump b/w brackets
+  nmap <tab> %
+  vmap <tab> %
+  "Simplify window switching
+  nnoremap <Leader>j <C-w>j
+  nnoremap <Leader>k <C-w>k
+  nnoremap <Leader>h <C-w>h
+  nnoremap <Leader>l <C-w>l
+  "Swap these, the ` version of the jump commands is much more useful than '
+  nnoremap ` '
+  nnoremap ' `
+  "Remap pgup/pgdwn and home/end variants to convenient keys
+  nnoremap <c-j> <c-d>
+  nnoremap <c-k> <c-u>
+  vnoremap <c-j> <c-d>
+  vnoremap <c-k> <c-u>
+  nnoremap <a-j> <c-d>
+  nnoremap <a-k> <c-u>
+  nnoremap <a-h> ^
+  nnoremap <a-l> $
+  nnoremap <c-h> ^
+  nnoremap <c-l> $
+  vnoremap <a-h> ^
+  vnoremap <a-l> $
+  vnoremap <c-h> ^
+  vnoremap <c-l> $
+  "Use 'screen' lines instead of 'file' lines for movement
+  nmap j gj
+  nmap k gk
+  " inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
+  "nnoremap <silent>O :set paste<cr>m`O<esc>``:set nopaste<cr>
+  " inoremap jj <Esc>
+  " inoremap kk <Esc>
 "}}}
 
 "F-Key mappings {{{
-   " map <f2> :execute Start_IDE()<CR>
-   " map <f3> :execute Stop_IDE()<CR>
-   nnoremap <F4> :GundoToggle<CR>
-   nnoremap <F5> :NERDTreeToggle<CR>
-   nnoremap <F6> :TlistToggle<CR>
-   "nnoremap <f8> :silent make<CR><C-l>
-   "inoremap <f8> <Esc>:silent make<CR><C-l>
-   "nnoremap <s-f8> :execute CCompile()<CR>
-   "inoremap <s-f8> <Esc>:execute CCompile()<CR>
-   "Map F8 to make test target
-   "nnoremap <f7> :silent make test<CR><C-l>
-   "inoremap <f7> <Esc>:silent make test<CR><C-l>
-   " nnoremap <f9> :VCSDiff<cr>
-   " inoremap <f9> <Esc>:VCSDiff<cr>
-   " nnoremap <S-f9> :VCSCommit<cr>
-   " inoremap <S-f9> <Esc>:VCSCommit<cr>
+  " map <f2> :execute Start_IDE()<CR>
+  " map <f3> :execute Stop_IDE()<CR>
+  nnoremap <F4> :GundoToggle<CR>
+  nnoremap <F5> :NERDTreeToggle<CR>
+  nnoremap <F6> :TlistToggle<CR>
+  "nnoremap <f8> :silent make<CR><C-l>
+  "inoremap <f8> <Esc>:silent make<CR><C-l>
+  "nnoremap <s-f8> :execute CCompile()<CR>
+  "inoremap <s-f8> <Esc>:execute CCompile()<CR>
+  "Map F8 to make test target
+  "nnoremap <f7> :silent make test<CR><C-l>
+  "inoremap <f7> <Esc>:silent make test<CR><C-l>
+  " nnoremap <f9> :VCSDiff<cr>
+  " inoremap <f9> <Esc>:VCSDiff<cr>
+  " nnoremap <S-f9> :VCSCommit<cr>
+  " inoremap <S-f9> <Esc>:VCSCommit<cr>
 "}}}
-
-"autocmd FocusLost * :wa
-
-" function! Increment()
-"    let i=1 | '<,'>g/blah1/s//\="blah_".i/ | let i=i+1
-" endfunction
-" vnoremap <c-a> :execute Increment()<cr>
-" nnoremap \ :tabn<cr>
-" ConqueTerm options and bindings
-" let g:ConqueTerm_InsertOnEnter = 1
-" let g:ConqueTerm_CWInsert = 1
-" Doesn't work properly
-
-" let g:ConqueTerm_ReadUnfocused = 1
-" This is only for python - it really ought to be changed into some kind of
-" scripted function
-" nnoremap <f4> :call conque_term#get_instance().writeln("run ".expand("%")." in")<cr>
 
 let g:statline_show_encoding = 0
 
@@ -443,7 +424,7 @@ let g:statline_show_encoding = 0
 	":!gcc -Wall -Wextra -g %
 "endfunction
 
-"Single character insert without leaving normal mode!
+"Single character insert without leaving normal mode! {{{
 function! RepeatChar(char, count)
 	return repeat(a:char, a:count)
 endfunction
@@ -488,12 +469,17 @@ function! GetVisual() range
   let escaped_selection = EscapeString(selection)
   return escaped_selection
 endfunction
+"}}}
 
 " Start the find and replace command across the entire file
 vnoremap <C-r> <Esc>:%s/<c-r>=GetVisual()<cr>/
 
-"Not sure why these need to be at the bottom...
+"Color theme options
 set t_Co=256
-colorscheme mustang
+colorscheme vividchalk
+
+"Allows transparent terminal background to persist within vim
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
+
+highlight Comment cterm=italic
