@@ -14,13 +14,11 @@ set nocompatible "Disable obsolete junk
   Plugin 'Lokaltog/vim-easymotion'
   Plugin 'mhinz/vim-signify'
   Plugin 'int3/vim-extradite'
-  "Plugin 'FriedSock/smeargle'
   "Causes problems with buffer swapping
   "Plugin 'juanpabloaj/ShowMarks'
   Plugin 'kana/vim-arpeggio'
   Plugin 'kien/ctrlp.vim'
   Plugin 'mileszs/ack.vim'
-  "Plugin 'millermedeiros/vim-statline'
   Plugin 'bling/vim-airline'
   Plugin 'rking/ag.vim'
   Plugin 'scrooloose/nerdcommenter'
@@ -51,7 +49,7 @@ set nocompatible "Disable obsolete junk
 
   if version <= 703
     Plugin 'ervandew/supertab'
-    "Plugin 'scrooloose/nerdtree'
+    Plugin 'scrooloose/nerdtree'
   endif
 
   if has('gui_running')
@@ -67,21 +65,22 @@ set nocompatible "Disable obsolete junk
 
 let mapleader = ","    "<Leader> = ','
 
-"Formating and Filetypes
-filetype plugin indent on
-au FileType * setlocal formatoptions-=o
-au BufReadPost *.cup setlocal filetype=java
-au BufReadPost *.as setlocal filetype=actionscript
-au BufNewFile,BufRead *.gradle setf groovy
-"Color puppet files as ruby
-au BufNewFile,BufRead *.pp setf ruby
+"Formating and Filetypes {{{
+  filetype plugin indent on
+  au FileType * setlocal formatoptions-=o
+  au BufReadPost *.cup setlocal filetype=java
+  au BufReadPost *.as setlocal filetype=actionscript
+  "Color gradle files as groovy
+  au BufNewFile,BufRead *.gradle setf groovy
+  "Color puppet files as ruby
+  au BufNewFile,BufRead *.pp setf ruby
+"}}}
 
 "GUI Options {{{
 au GUIEnter * set lines=43 columns=95
 if has('gui_running')
-  colorscheme mustang
+  colorscheme vividchalk
   set cursorline         "highlights current line, looks terrible in console
-  set guifont=Monaco\ 12 "Warning: special font
   set guioptions-=T      "Disable toolbar
   set guioptions-=m      "Disable menubar
   set guioptions-=r      "Disable right scrollbar
@@ -110,7 +109,7 @@ endif "}}}
   set list listchars=tab:→\ ,trail:· "Show trailing whitespace"
   set linebreak     "Don't split lines mid-word
   "Make Y behave like the other operator capitals
-  "noremap Y y$
+  noremap Y y$
 "}}}
 
 "Theme and color settings{{{
@@ -121,12 +120,14 @@ endif "}}}
   set t_Co=256
 
   colorscheme vividchalk
+  "colorscheme solarized
 
   "Allows transparent terminal background to persist within vim
   highlight Normal ctermbg=none
   highlight NonText ctermbg=none
 
   highlight Comment cterm=italic
+  highlight Todo cterm=underline
 "}}}
 
 "Indent settings{{{
@@ -146,11 +147,11 @@ endif "}}}
 "}}}
 
 "Misc options {{{
-  set number         "Relative is too slow except in the GUI
+  set number           "Relative is too slow except in the GUI
   if version >= 703
     set undofile       "Persistant undo history
     set undodir=~/.vim-backup
-    set aw             "Autosave when appropriate (not 7.3 specific)
+    set autowrite      "Autosave when appropriate (not 7.3 specific)
     set colorcolumn=120
   endif
   set backupdir=~/.vim-backup
@@ -159,8 +160,9 @@ endif "}}}
   set wildmenu       "Menubar
   set wildmode=list:longest
   set scrolloff=4    "Auto-scrolls screen near edges
+  set sidescrolloff=5 "Auto-scrolls screen near horizontal
   set updatetime=2000 "Affects visual marker indicators
-  set modelines=0    "Modelines are security risk
+  set modelines=0    "Modelines are a security risk
   set viminfo='100,<50,s10,h,n~/.viminfo
   set diffopt+=iwhite "Ignore whitespace in diff mode
   "Go to last cursor position when reopening file
@@ -212,9 +214,6 @@ endif "}}}
   call arpeggio#map('nv','',1,'we',',w')
   call arpeggio#map('nv','',1,'WE',',b')
   "Arpeggio nnoremap jh ``
-  "Arpeggio nnoremap nm :!make<cr>
-  "Arpeggio nnoremap NM :!make test<cr>
-
 
   "Zen Coding{{{
     " au FileType html,xml Arpeggio imap uio <c-y>,>
@@ -230,27 +229,23 @@ endif "}}}
 "Commands (Normal) {{{
   "Sane substitution
   vnoremap <Leader>/ :s/\%V/<Left>
-  "nnoremap <Leader>/ :%s/\V/
   "Easier command entry
   nnoremap ; :
   vnoremap ; :
   nnoremap q; q:
   vnoremap q; q:
-  "nnoremap <space> <cr>
+  "Don't leave visual mode while shifting indents
+  vnoremap < <gv
+  vnoremap > >gv
   "CamelCaseMovement: Plugin
   omap ow i,w
   vmap ow i,w
   "These don't work?
   "omap oe i,e
   "omap ob i,b
-  "Write file as markdown
-   "nnoremap <Leader>m :w<cr>:silent !Markdown.pl % > %.html<cr>
 
   "Sudo write:
   cmap w!! w !sudo tee > /dev/null %
-
-  "Recent file list
-  nnoremap <Leader>O :MRU<cr>
 
   "This only works if the terminal is set correctly
   "Saves: and returns to command mode
@@ -280,12 +275,13 @@ endif "}}}
   nnoremap <silent> \ :bnext<cr>
   nnoremap <silent> <s-\> :bprev<cr>
 
-  "Open: fuzzy matching
-  nnoremap <Leader>o :CtrlP<CR>
-  nnoremap <Leader>i :CtrlPTag<CR>
-  nnoremap <Leader>p :CtrlPBuffer<CR>
+  "Open: fuzzy matching with CtrlP / MRU
+  nnoremap <Leader>o :CtrlP<cr>
+  nnoremap <Leader>O :CtrlPBuffer<cr>
+  nnoremap <Leader>i :CtrlPTag<cr>
+  nnoremap <Leader>P :MRU<cr>
+  nnoremap <Leader>p :CtrlPMRUFiles<cr>
   "let g:ctrlp_extensions = [ 'tag' ]
-  "nnoremap <Leader>
   "Comment: toggle
   "nmap <Leader>, ,c 
   "vmap <Leader>, ,c 
@@ -397,8 +393,6 @@ endif "}}}
 "}}}
 
 "F-Key mappings {{{
-  " map <f2> :execute Start_IDE()<CR>
-  " map <f3> :execute Stop_IDE()<CR>
   nnoremap <F4> :GundoToggle<CR>
   nnoremap <F5> :NERDTreeToggle<CR>
   nnoremap <F6> :TlistToggle<CR>
@@ -416,20 +410,6 @@ endif "}}}
 "}}}
 
 let g:statline_show_encoding = 0
-
-"Functions
-" function! Start_IDE()
-" 	:botright copen
-" 	:TlistOpen
-" 	execute "normal \<c-w>k"
-" endfunction
-" function! Stop_IDE()
-" 	:TlistClose
-" 	:cclose
-" endfunction
-"function! CCompile()
-	":!gcc -Wall -Wextra -g %
-"endfunction
 
 "Single character insert without leaving normal mode! {{{
 function! RepeatChar(char, count)
