@@ -49,7 +49,6 @@ set nocompatible "Disable obsolete junk
 
   if version <= 703
     Plugin 'ervandew/supertab'
-    Plugin 'scrooloose/nerdtree'
   endif
 
   if has('gui_running')
@@ -127,6 +126,10 @@ endif "}}}
   highlight NonText ctermbg=none
 
   highlight Comment cterm=italic
+  "If not supported in terminfo, italics shows up as ugly highlighting
+  if $TERM =~ "italic"
+    highlight Comment cterm=italic
+  endif
   highlight Todo cterm=underline
 "}}}
 
