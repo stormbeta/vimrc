@@ -32,6 +32,10 @@ set nocompatible "Disable obsolete junk
   Plugin 'tpope/vim-markdown'
   Plugin 'tpope/vim-sensible'
   Plugin 'yegappan/mru'
+  Plugin 'tpope/vim-dispatch'
+
+  "textobj plugins
+  Plugin 'textobj-indent'
 
   "Color themes
   Plugin 'altercation/vim-colors-solarized'
@@ -109,6 +113,8 @@ endif "}}}
   set linebreak     "Don't split lines mid-word
   "Make Y behave like the other operator capitals
   noremap Y y$
+  "Bash only - fixes spurious stdout/stderr output from some plugins
+  let &shellpipe="&>"
 "}}}
 
 "Theme and color settings{{{
@@ -289,14 +295,28 @@ endif "}}}
   "nmap <Leader>, ,c 
   "vmap <Leader>, ,c 
 
-  "Ack backup
-  map <Leader>A :Ack 
+  "Ag/Ack config
+  "let g:ackpreview=1
+  let g:ackhighlight=1
+  let g:ack_use_dispatch=1
+  "let g:ack_autoclose=1
+  if executable('ag')
+    let g:ackprg="ag --column --nocolor --nogroup"
+    map <Leader>a :Ack 
+    set grepprg=ag\ --nogroup\ --nocolor
 
-  "Ag default
-  let g:agprg="ag --column"
-  map <Leader>a :Ag 
+    "TODO: Consider mapping file list from git where possible
+    "See http://kien.github.io/ctrlp.vim/
+    "let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    "let g:ctrlp_use_caching = 0
+  else
+    let g:ackprg="ack-grep --nocolor --nogroup --column"
+    map <Leader>a :Ack 
+    set grepprg=ack-grep\ --nogroup\ --nocolor\ --no-binary
+  endif
 
-
+  "Use grep command instead of man page
+  nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
   "EasyMotion:
   let g:EasyMotion_leader_key = '<Leader>w'
