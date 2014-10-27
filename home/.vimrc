@@ -19,7 +19,6 @@ set nocompatible "Disable obsolete junk
   Plugin 'kana/vim-arpeggio'
   Plugin 'kien/ctrlp.vim'
   Plugin 'mileszs/ack.vim'
-  Plugin 'bling/vim-airline'
   Plugin 'rking/ag.vim'
   Plugin 'scrooloose/nerdcommenter'
   Plugin 'scrooloose/nerdtree'
@@ -35,9 +34,11 @@ set nocompatible "Disable obsolete junk
   Plugin 'tpope/vim-dispatch'
 
   "textobj plugins
-  Plugin 'textobj-indent'
+  "Plugin 'textobj-indent'
 
-  "Color themes
+  "Theming/UI
+  Plugin 'bling/vim-airline'
+  Plugin 'edkolev/promptline.vim'
   Plugin 'altercation/vim-colors-solarized'
   Plugin 'croaker/mustang-vim'
   Plugin 'tpope/vim-vividchalk'
@@ -45,6 +46,9 @@ set nocompatible "Disable obsolete junk
   "Syntax highlighting
   Plugin 'kchmck/vim-coffee-script'
   Plugin 'ekalinin/Dockerfile.vim'
+  Plugin 'PProvost/vim-ps1'
+  Plugin 'vim-scripts/applescript.vim'
+  Plugin 'markcornick/vim-vagrant'
 
   if version >= 704
     Plugin 'Valloric/YouCompleteMe'
@@ -73,8 +77,10 @@ let mapleader = ","    "<Leader> = ','
   au FileType * setlocal formatoptions-=o
   au BufReadPost *.cup setlocal filetype=java
   au BufReadPost *.as setlocal filetype=actionscript
+  au BufReadPost *.eyaml setlocal filetype=yaml
+  au BufReadPost *.gradle setlocal filetype=groovy
   "Color gradle files as groovy
-  au BufNewFile,BufRead *.gradle setf groovy
+  "au BufNewFile,BufRead *.gradle setf groovy
   "Color puppet files as ruby
   au BufNewFile,BufRead *.pp setf ruby
 "}}}
@@ -118,10 +124,13 @@ endif "}}}
 "}}}
 
 "Theme and color settings{{{
+  "Airline:
+  let g:airline_powerline_fonts = 1
+
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#left_sep = ' '
   let g:airline#extensions#tabline#left_alt_sep = '|'
-  let g:solarized_termcolors=256
+  "let g:solarized_termcolors=256
   set t_Co=256
 
   colorscheme vividchalk
@@ -131,7 +140,6 @@ endif "}}}
   highlight Normal ctermbg=none
   highlight NonText ctermbg=none
 
-  highlight Comment cterm=italic
   "If not supported in terminfo, italics shows up as ugly highlighting
   if $TERM =~ "italic"
     highlight Comment cterm=italic
