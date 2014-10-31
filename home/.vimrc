@@ -124,23 +124,32 @@ endif "}}}
 "}}}
 
 "Theme and color settings{{{
+  "Theme:
+  "colorscheme kalisi
+  "colorscheme vividchalk
+  colorscheme solarized
+
   "Airline:
   let g:airline_powerline_fonts = 1
-
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#left_sep = ' '
   let g:airline#extensions#tabline#left_alt_sep = '|'
+
+  "Promptline:
+  "let g:prompline_preset = {
+    "\'a' : [ promptline#slices#cwd() ],
+  ", promptline#slices#vcs_branch(), promptline#slices
+  "}
+
+  "General:
   "let g:solarized_termcolors=256
   set t_Co=256
-
-  colorscheme vividchalk
-  "colorscheme solarized
 
   "Allows transparent terminal background to persist within vim
   highlight Normal ctermbg=none
   highlight NonText ctermbg=none
 
-  "If not supported in terminfo, italics shows up as ugly highlighting
+  "Enable italics if custom terminfo available
   if $TERM =~ "italic"
     highlight Comment cterm=italic
   endif
