@@ -5,6 +5,7 @@ set nocompatible "Disable obsolete junk
 "Load plugins{{{
   filetype off
   set rtp+=~/.vim/bundle/vundle
+  set rtp+=~/.vim/bundle/nginx
   call vundle#begin()
   set runtimepath^=~/.vim/bundle/ctrlp.vim
 
