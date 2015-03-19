@@ -33,16 +33,20 @@ set nocompatible "Disable obsolete junk
   Plugin 'tpope/vim-sensible'
   Plugin 'yegappan/mru'
   Plugin 'tpope/vim-dispatch'
+  Plugin 'junegunn/vim-easy-align'
 
   "textobj plugins
-  "Plugin 'textobj-indent'
+  Plugin 'kana/vim-textobj-user'
+  Plugin 'kana/vim-textobj-indent'
+  Plugin 'sgur/vim-textobj-parameter'
 
   "Theming/UI
   Plugin 'bling/vim-airline'
   Plugin 'edkolev/promptline.vim'
   Plugin 'altercation/vim-colors-solarized'
-  Plugin 'croaker/mustang-vim'
+  "Plugin 'croaker/mustang-vim'
   Plugin 'tpope/vim-vividchalk'
+  Plugin 'freeo/vim-kalisi'
 
   "Syntax highlighting
   Plugin 'kchmck/vim-coffee-script'
@@ -100,7 +104,11 @@ endif "}}}
 
 "Clipboard settings{{{
   "Ensure vim uses system clipboard (tested on OSX)
-  set clipboard=unnamedplus,unnamed,autoselect
+  if has('nvim')
+    set clipboard=unnamedplus
+  else
+    set clipboard=unnamedplus,unnamed,autoselect
+  endif
 "}}}
 
 "Sanity options{{{
@@ -238,8 +246,8 @@ endif "}}}
   Arpeggio inoremap kl <c-n>
   Arpeggio inoremap KL <c-p>
   "inner word movement
-  call arpeggio#map('nv','',1,'we',',w')
-  call arpeggio#map('nv','',1,'WE',',b')
+  "call arpeggio#map('nv','',1,'we',',w')
+  "call arpeggio#map('nv','',1,'WE',',b')
   "Arpeggio nnoremap jh ``
 
   "Zen Coding{{{
@@ -256,6 +264,7 @@ endif "}}}
 "Commands (Normal) {{{
   "Sane substitution
   vnoremap <Leader>/ :s/\%V/<Left>
+  vmap <enter> <Plug>(EasyAlign)
   "Easier command entry
   nnoremap ; :
   vnoremap ; :
