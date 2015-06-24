@@ -54,6 +54,8 @@ set nocompatible "Disable obsolete junk
   Plugin 'PProvost/vim-ps1'
   Plugin 'vim-scripts/applescript.vim'
   Plugin 'markcornick/vim-vagrant'
+  Plugin 'derekwyatt/vim-scala'
+  Plugin 'guns/vim-clojure-highlight'
 
   if version >= 704
     Plugin 'Valloric/YouCompleteMe'
