@@ -41,7 +41,8 @@ set nocompatible "Disable obsolete junk
   Plugin 'sgur/vim-textobj-parameter'
 
   "Theming/UI
-  Plugin 'bling/vim-airline'
+  Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
   Plugin 'edkolev/promptline.vim'
   Plugin 'altercation/vim-colors-solarized'
   "Plugin 'croaker/mustang-vim'
@@ -56,10 +57,17 @@ set nocompatible "Disable obsolete junk
   Plugin 'markcornick/vim-vagrant'
   Plugin 'derekwyatt/vim-scala'
   Plugin 'guns/vim-clojure-highlight'
+  Plugin 'davidzchen/vim-bazel'
+  Plugin 'rust-lang/rust.vim'
+
+  "Integrated Development
+  Plugin 'tpope/vim-fireplace'
+  Plugin 'racer-rust/vim-racer'
 
   if version >= 704
     Plugin 'Valloric/YouCompleteMe'
     Plugin 'eiginn/netrw'
+    "Plugin 'guns/vim-clojure-static'
   endif
 
   if version <= 703
@@ -147,10 +155,12 @@ endif "}}}
   let g:airline#extensions#tabline#left_alt_sep = '|'
 
   "Promptline:
-  "let g:prompline_preset = {
-    "\'a' : [ promptline#slices#cwd() ],
-  ", promptline#slices#vcs_branch(), promptline#slices
-  "}
+  let g:promptline_preset = {
+        \'a' : [ '$USER'],
+        \'b' : [ '$(basename $VIRTUAL_ENV 2>/dev/null)' ],
+        \'c' : [ promptline#slices#cwd() ],
+        \'y' : [ promptline#slices#vcs_branch() ],
+        \'warn' : [ promptline#slices#last_exit_code() ]}
 
   "General:
   "let g:solarized_termcolors=256
@@ -238,8 +248,8 @@ endif "}}}
   call arpeggio#map('nv','',1,'re',',c ')
   "Arpeggio nnoremap fg [{zf]}
   "au FileType java Arpeggio imap ui <c-x><c-u>
-  Arpeggio nnoremap /. :%!perl -pi -e 's//'<left><left>
-  Arpeggio vnoremap /. :!perl -pi -e 's//'<left><left>
+  Arpeggio nnoremap /. :%!perl -pe 's//'<left><left>
+  Arpeggio vnoremap /. :!perl -pe 's//'<left><left>
   "Buffers: mappings{{{
     "call arpeggio#map('nv','',0,
   "}}}
@@ -272,6 +282,8 @@ endif "}}}
   vnoremap ; :
   nnoremap q; q:
   vnoremap q; q:
+  "Single character replace
+  nnoremap s i_<ESC>r
   "Don't leave visual mode while shifting indents
   vnoremap < <gv
   vnoremap > >gv
@@ -462,13 +474,6 @@ endif "}}}
 "}}}
 
 let g:statline_show_encoding = 0
-
-"Single character insert without leaving normal mode! {{{
-function! RepeatChar(char, count)
-	return repeat(a:char, a:count)
-endfunction
-nnoremap s :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
-" nnoremap S :<C-U>exec \"normal a\".RepeatChar(nr2char(getchar()), v:count1)<CR>
 
 
 "The following was copied from the web, it adds automatic

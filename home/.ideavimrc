@@ -10,6 +10,7 @@ vnoremap kj <ESC>
 vnoremap <backspace> d
 inoremap wq <ESC>:wq<CR>
 inoremap qw <ESC>:wq<CR>
+nnoremap s i_<ESC>r
 
 set ttimeoutlen=50
 set timeoutlen=100
