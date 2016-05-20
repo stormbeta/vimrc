@@ -59,6 +59,7 @@ set nocompatible "Disable obsolete junk
   Plugin 'guns/vim-clojure-highlight'
   Plugin 'davidzchen/vim-bazel'
   Plugin 'rust-lang/rust.vim'
+  Plugin 'hashivim/vim-terraform'
 
   "Integrated Development
   Plugin 'tpope/vim-fireplace'
@@ -94,6 +95,7 @@ let mapleader = ","    "<Leader> = ','
   au BufReadPost *.as setlocal filetype=actionscript
   au BufReadPost *.eyaml setlocal filetype=yaml
   au BufReadPost *.gradle setlocal filetype=groovy
+  au BufReadPost *.conf.tmpl setlocal filetype=nginx
   "Color gradle files as groovy
   "au BufNewFile,BufRead *.gradle setf groovy
   "Color puppet files as ruby
@@ -114,6 +116,7 @@ endif "}}}
 
 "Clipboard settings{{{
   "Ensure vim uses system clipboard (tested on OSX)
+  "Note that linux needs +xterm_clipboard feature compiled in
   if has('nvim')
     set clipboard=unnamedplus
   else
@@ -143,28 +146,33 @@ endif "}}}
 "}}}
 
 "Theme and color settings{{{
+
+  "Only enable for generating promptline snapshot
+  "colorscheme solarized
+  "set t_Co=256
+  "let g:solarized_termcolors=256
+
   "Theme:
-  "colorscheme kalisi
-  "colorscheme vividchalk
   colorscheme solarized
+
+  "General:
+  set t_Co=256
 
   "Airline:
   let g:airline_powerline_fonts = 1
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#left_sep = ' '
   let g:airline#extensions#tabline#left_alt_sep = '|'
+  let g:airline_theme='sol'
 
   "Promptline:
   let g:promptline_preset = {
-        \'a' : [ '$USER'],
-        \'b' : [ '$(basename $VIRTUAL_ENV 2>/dev/null)' ],
+        \'a' : [ promptline#slices#python_virtualenv(), '$(rbenv local 2>/dev/null)', '$(if [[ "${NVM_BIN}/node" == "$(which node || true)" ]]; then echo $NVM_BIN | grep -Eo "node/v([0-9]+\.?)+"; fi)'],
+        \'b' : [ promptline#slices#host() ],
         \'c' : [ promptline#slices#cwd() ],
-        \'y' : [ promptline#slices#vcs_branch() ],
+        \'y' : [ promptline#slices#vcs_branch(), promptline#slices#git_status() ],
         \'warn' : [ promptline#slices#last_exit_code() ]}
 
-  "General:
-  "let g:solarized_termcolors=256
-  set t_Co=256
 
   "Allows transparent terminal background to persist within vim
   highlight Normal ctermbg=none
