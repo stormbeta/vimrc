@@ -60,10 +60,13 @@ set nocompatible "Disable obsolete junk
   Plugin 'davidzchen/vim-bazel'
   Plugin 'rust-lang/rust.vim'
   Plugin 'hashivim/vim-terraform'
+  Plugin 'google/vim-jsonnet'
+  Plugin 'elixir-lang/vim-elixir'
 
   "Integrated Development
-  Plugin 'tpope/vim-fireplace'
-  Plugin 'racer-rust/vim-racer'
+  Plugin  'fatih/vim-go'
+  "Plugin 'tpope/vim-fireplace'
+  "Plugin 'racer-rust/vim-racer'
 
   if version >= 704
     Plugin 'Valloric/YouCompleteMe'
@@ -325,7 +328,7 @@ endif "}}}
   nnoremap <Leader>gvc :Git svn dcommit<cr>
   nnoremap <Leader>gl :Extradite<cr>
   nnoremap <Leader>gb :Git branch<cr>
-  nnoremap <Leader>gB :Git checkout 
+  nnoremap <Leader>gB :Git checkout
   nnoremap <Leader>gu :Git fetch
   nnoremap <Leader>gp :Git pull
 
