@@ -4,9 +4,9 @@
 
 action="${1:-update}"
 if [[ "${action}" == 'install' ]]; then
-  vundle_cmd='BundleInstall'
+  plug_cmd='PlugInstall'
 else
-  vundle_cmd='BundleUpdate'
+  plug_cmd='PlugUpgrade'
 fi
 
-vim -e -c "${vundle_cmd}" -c 'qa!'
+vim -e -c "${plug_cmd}" -c 'qa!'

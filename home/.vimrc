@@ -4,86 +4,86 @@ set nocompatible "Disable obsolete junk
 
 "Load plugins{{{
   filetype off
-  set rtp+=~/.vim/bundle/vundle
-  set rtp+=~/.vim/bundle/nginx
-  call vundle#begin()
-  set runtimepath^=~/.vim/bundle/ctrlp.vim
+  set rtp+=~/.vim/plugged/nginx
+  call plug#begin('~/.vim/plugged')
 
-  Plugin 'gmarik/vundle'
+  "TODO: Unsure if this is still needed
+  set runtimepath^=~/.vim/plugged/ctrlp.vim
 
-  "Vundle:
-  Plugin 'Lokaltog/vim-easymotion'
-  Plugin 'mhinz/vim-signify'
-  Plugin 'int3/vim-extradite'
+  "vim-plug:
+  Plug 'Lokaltog/vim-easymotion'
+  Plug 'mhinz/vim-signify'
+  Plug 'int3/vim-extradite'
   "Causes problems with buffer swapping
-  "Plugin 'juanpabloaj/ShowMarks'
-  Plugin 'kana/vim-arpeggio'
-  Plugin 'kien/ctrlp.vim'
-  Plugin 'mileszs/ack.vim'
-  Plugin 'rking/ag.vim'
-  Plugin 'scrooloose/nerdcommenter'
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'sjl/gundo.vim'
-  Plugin 'tpope/vim-fugitive'
-  Plugin 'tpope/vim-repeat'
-  Plugin 'tpope/vim-surround'
-  Plugin 'vim-scripts/camelcasemotion'
-  Plugin 'vim-scripts/taglist.vim'
-  Plugin 'tpope/vim-markdown'
-  Plugin 'tpope/vim-sensible'
-  Plugin 'yegappan/mru'
-  Plugin 'tpope/vim-dispatch'
-  Plugin 'junegunn/vim-easy-align'
+  "Plug 'juanpabloaj/ShowMarks'
+  Plug 'kana/vim-arpeggio'
+  Plug 'kien/ctrlp.vim'
+  Plug 'mileszs/ack.vim'
+  Plug 'rking/ag.vim'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'scrooloose/nerdtree'
+  Plug 'sjl/gundo.vim'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-surround'
+  Plug 'vim-scripts/camelcasemotion'
+  Plug 'vim-scripts/taglist.vim'
+  Plug 'tpope/vim-markdown'
+  Plug 'tpope/vim-sensible'
+  Plug 'yegappan/mru'
+  Plug 'tpope/vim-dispatch'
+  Plug 'junegunn/vim-easy-align'
 
   "textobj plugins
-  Plugin 'kana/vim-textobj-user'
-  Plugin 'kana/vim-textobj-indent'
-  Plugin 'sgur/vim-textobj-parameter'
+  Plug 'kana/vim-textobj-user'
+  Plug 'kana/vim-textobj-indent'
+  Plug 'sgur/vim-textobj-parameter'
+  Plug 'reedes/vim-textobj-sentence'
 
   "Theming/UI
-  Plugin 'vim-airline/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
-  Plugin 'edkolev/promptline.vim'
-  Plugin 'altercation/vim-colors-solarized'
-  "Plugin 'croaker/mustang-vim'
-  Plugin 'tpope/vim-vividchalk'
-  Plugin 'freeo/vim-kalisi'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'edkolev/promptline.vim'
+  Plug 'altercation/vim-colors-solarized'
+  "Plug 'croaker/mustang-vim'
+  Plug 'tpope/vim-vividchalk'
+  Plug 'freeo/vim-kalisi'
 
   "Syntax highlighting
-  Plugin 'kchmck/vim-coffee-script'
-  Plugin 'ekalinin/Dockerfile.vim'
-  Plugin 'PProvost/vim-ps1'
-  Plugin 'vim-scripts/applescript.vim'
-  Plugin 'markcornick/vim-vagrant'
-  Plugin 'derekwyatt/vim-scala'
-  Plugin 'guns/vim-clojure-highlight'
-  Plugin 'davidzchen/vim-bazel'
-  Plugin 'rust-lang/rust.vim'
-  Plugin 'hashivim/vim-terraform'
-  Plugin 'google/vim-jsonnet'
-  Plugin 'elixir-lang/vim-elixir'
+  Plug 'kchmck/vim-coffee-script'
+  Plug 'ekalinin/Dockerfile.vim'
+  Plug 'PProvost/vim-ps1'
+  Plug 'vim-scripts/applescript.vim'
+  Plug 'markcornick/vim-vagrant'
+  Plug 'derekwyatt/vim-scala'
+  Plug 'guns/vim-clojure-highlight'
+  Plug 'davidzchen/vim-bazel'
+  Plug 'rust-lang/rust.vim'
+  Plug 'hashivim/vim-terraform'
+  Plug 'google/vim-jsonnet'
+  Plug 'elixir-lang/vim-elixir'
 
   "Integrated Development
-  Plugin  'fatih/vim-go'
-  "Plugin 'tpope/vim-fireplace'
-  "Plugin 'racer-rust/vim-racer'
+  Plug  'fatih/vim-go'
+  "Plug 'tpope/vim-fireplace'
+  "Plug 'racer-rust/vim-racer'
 
   if version >= 704
-    Plugin 'Valloric/YouCompleteMe'
-    Plugin 'eiginn/netrw'
-    "Plugin 'guns/vim-clojure-static'
+    Plug 'Valloric/YouCompleteMe'
+    Plug 'eiginn/netrw'
+    "Plug 'guns/vim-clojure-static'
   endif
 
   if version <= 703
-    Plugin 'ervandew/supertab'
+    Plug 'ervandew/supertab'
   endif
 
   if has('gui_running')
     "This is awful except in the GUI
-    Plugin 'joeytwiddle/sexy_scroller.vim'
+    Plug 'joeytwiddle/sexy_scroller.vim'
   endif
 
-  call vundle#end()
+  call plug#end()
 
   "call showmarks#ShowMarks('global,enable') "Visual marks
   call arpeggio#load()   "Key chord binding!
@@ -151,12 +151,12 @@ endif "}}}
 "Theme and color settings{{{
 
   "Only enable for generating promptline snapshot
-  "colorscheme solarized
-  "set t_Co=256
-  "let g:solarized_termcolors=256
+  colorscheme solarized
+  set t_Co=256
+  let g:solarized_termcolors=256
 
   "Theme:
-  colorscheme solarized
+  "colorscheme solarized
 
   "General:
   set t_Co=256
@@ -166,12 +166,12 @@ endif "}}}
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#left_sep = ' '
   let g:airline#extensions#tabline#left_alt_sep = '|'
-  let g:airline_theme='sol'
+  let g:airline_theme='solarized'
 
   "Promptline:
   let g:promptline_preset = {
         \'a' : [ promptline#slices#python_virtualenv(), '$(rbenv local 2>/dev/null)', '$(if [[ "${NVM_BIN}/node" == "$(which node || true)" ]]; then echo $NVM_BIN | grep -Eo "node/v([0-9]+\.?)+"; fi)'],
-        \'b' : [ promptline#slices#host() ],
+        \'b' : [ '${HOSTNAME}' ],
         \'c' : [ promptline#slices#cwd() ],
         \'y' : [ promptline#slices#vcs_branch(), promptline#slices#git_status() ],
         \'warn' : [ promptline#slices#last_exit_code() ]}
