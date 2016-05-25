@@ -4,7 +4,11 @@ set nocompatible "Disable obsolete junk
 
 "Load plugins{{{
   filetype off
+
+  "Required as there's no separate repo for the nginx vim settings
   set rtp+=~/.vim/plugged/nginx
+
+  "Initialize vim-plug
   call plug#begin('~/.vim/plugged')
 
   "TODO: Unsure if this is still needed
