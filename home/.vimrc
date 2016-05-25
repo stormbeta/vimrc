@@ -155,12 +155,12 @@ endif "}}}
 "Theme and color settings{{{
 
   "Only enable for generating promptline snapshot
-  colorscheme solarized
-  set t_Co=256
-  let g:solarized_termcolors=256
+  "colorscheme solarized
+  "set t_Co=256
+  "let g:solarized_termcolors=256
 
   "Theme:
-  "colorscheme solarized
+  colorscheme solarized
 
   "General:
   set t_Co=256
