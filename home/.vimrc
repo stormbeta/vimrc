@@ -225,13 +225,17 @@ endif "}}}
   set sidescrolloff=5 "Auto-scrolls screen near horizontal
   set updatetime=2000 "Affects visual marker indicators
   set modelines=0    "Modelines are a security risk
-  set viminfo='100,<50,s10,h,n~/.viminfo
   set diffopt+=iwhite "Ignore whitespace in diff mode
   "Go to last cursor position when reopening file
   au BufReadPost *
    \ if line("'\"") > 1 && line("'\"") <= line("$") |
    \ exe "normal! g`\"" |
    \ endif
+
+  "nvim info file is incompatible
+  if ! has('nvim')
+    set viminfo='100,<50,s10,h,n~/.viminfo
+  endif
 "}}}
 
 "Fold settings {{{
