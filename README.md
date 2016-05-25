@@ -5,7 +5,7 @@ Basic Settings
 * undofile to persist undo state
 * various movement settings
 * various indentation settings to use smart automatic two-space indenting
-* Version checks to ensure config works with 7.2, 7.3, and 7.4
+* Version checks to ensure config works with 7.3 and 7.4
 
 Interesting Settings
 --------------
@@ -16,7 +16,7 @@ Interesting Settings
 
 Plugins
 -------
-* Vundle for simple plugin installation, updates, and management
+* vim-plug for simple plugin installation, updates, and management
 * CtrlP, MRU, and Ag/Ack for rapid navigation in arbitrary projects
 * Arpeggio for keybinding shenanigans
 * Fugitive / Extradite for git support, vim-signify to show changed lines inline
@@ -28,3 +28,4 @@ Plugins
 * extra syntax highlighting plugins
 * netrw for directory navigation (fallback to NERDTree)
 * color theme plugins
+* nginx plugin is committed directly since it's from the nginx source repo
