@@ -15,30 +15,38 @@ set nocompatible "Disable obsolete junk
   set runtimepath^=~/.vim/plugged/ctrlp.vim
 
   "vim-plug:
-  Plug 'Lokaltog/vim-easymotion'
-  Plug 'mhinz/vim-signify'
-  Plug 'int3/vim-extradite'
-  "Causes problems with buffer swapping
-  "Plug 'juanpabloaj/ShowMarks'
+
+  "Special
   Plug 'kana/vim-arpeggio'
+  Plug 'AndrewRadev/switch.vim'
+
+  "Project and workspace
   Plug 'kien/ctrlp.vim'
   Plug 'mileszs/ack.vim'
   Plug 'rking/ag.vim'
-  Plug 'scrooloose/nerdcommenter'
   Plug 'scrooloose/nerdtree'
-  Plug 'sjl/gundo.vim'
+
+  "Source control
+  Plug 'int3/vim-extradite'
   Plug 'tpope/vim-fugitive'
+
+  "Misc / uncategorized
+  Plug 'mhinz/vim-signify'
+  "Causes problems with buffer swapping
+  "Plug 'juanpabloaj/ShowMarks'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'sjl/gundo.vim'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
-  Plug 'vim-scripts/camelcasemotion'
   Plug 'vim-scripts/taglist.vim'
-  Plug 'tpope/vim-markdown'
   Plug 'tpope/vim-sensible'
   Plug 'yegappan/mru'
   Plug 'tpope/vim-dispatch'
   Plug 'junegunn/vim-easy-align'
 
-  "textobj plugins
+  "Movement and textobj
+  Plug 'Lokaltog/vim-easymotion'
+  Plug 'vim-scripts/camelcasemotion'
   Plug 'kana/vim-textobj-user'
   Plug 'kana/vim-textobj-indent'
   Plug 'sgur/vim-textobj-parameter'
@@ -66,12 +74,14 @@ set nocompatible "Disable obsolete junk
   Plug 'hashivim/vim-terraform'
   Plug 'google/vim-jsonnet'
   Plug 'elixir-lang/vim-elixir'
+  Plug 'tpope/vim-markdown'
 
-  "Integrated Development
+  "Integrated Development / Language support
   Plug  'fatih/vim-go'
   "Plug 'tpope/vim-fireplace'
   "Plug 'racer-rust/vim-racer'
 
+  "Version dependent
   if version >= 704
     Plug 'Valloric/YouCompleteMe'
     Plug 'eiginn/netrw'
@@ -261,8 +271,10 @@ endif "}}}
   "Arpeggio nnoremap qwer :wq<cr>
   Arpeggio nnoremap qw :w<cr>
   Arpeggio inoremap qw <Esc>:w<cr>
+  "Arpeggio nnoremap we :Switch<cr>
+  Arpeggio nmap we ysiW
   "EasyMotion:
-  Arpeggio nnoremap we <Leader>w
+  "Arpeggio nnoremap we <Leader>w
   "Comment:
   call arpeggio#map('nv','',1,'re',',c ')
   "Arpeggio nnoremap fg [{zf]}
@@ -402,6 +414,7 @@ endif "}}}
 "}}}
 
 "Completion {{{
+  "TODO: Revisit these settings
   "set completeopt+=longest,menu
 
   "au FileType java let g:neocomplcache_enable_at_startup=0
@@ -493,7 +506,6 @@ endif "}}}
 "}}}
 
 let g:statline_show_encoding = 0
-
 
 "The following was copied from the web, it adds automatic
 "search and replace functionality via Ctrl+R in visual mode
