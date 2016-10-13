@@ -1,4 +1,10 @@
 "Primary .vimrc
+if has("win32") || has("win16")
+  "Required here or else this file will throw errors on windows
+  scriptencoding utf-8
+  set encoding=utf-8
+endif
+
 let mapleader = ","    "<Leader> = ','
 set nocompatible "Disable obsolete junk
 
@@ -124,18 +130,26 @@ let mapleader = ","    "<Leader> = ','
 "GUI Options {{{
 au GUIEnter * set lines=43 columns=95
 if has('gui_running')
-  colorscheme vividchalk
+  "colorscheme vividchalk
   set cursorline         "highlights current line, looks terrible in console
   set guioptions-=T      "Disable toolbar
   set guioptions-=m      "Disable menubar
   set guioptions-=r      "Disable right scrollbar
   set guioptions-=L      "Disable left scrollbar
   set relativenumber     "Relative line numbers
+
+  "Windows-only options
+  if has("win32") || has("win16")
+    set guifont=Source\ Code\ Pro:h10
+    set guioptions+=m
+    set guioptions+=r
+  endif
 endif "}}}
 
 "Clipboard settings{{{
   "Ensure vim uses system clipboard (tested on OSX)
   "Note that linux needs +xterm_clipboard feature compiled in
+  "Works in Windows and OSX!
   if has('nvim')
     set clipboard=unnamedplus
   else
