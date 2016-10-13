@@ -1,5 +1,7 @@
 source ~/.vimrc
 
+unmap /
+
 set norelativenumber
 set number
 

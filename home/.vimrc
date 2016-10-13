@@ -113,6 +113,8 @@ let mapleader = ","    "<Leader> = ','
   au BufReadPost *.eyaml setlocal filetype=yaml
   au BufReadPost *.gradle setlocal filetype=groovy
   au BufReadPost *.conf.tmpl setlocal filetype=nginx
+  au BufReadPost Jenkinsfile setlocal filetype=groovy
+  au BufReadPost *.jenkinsfile setlocal filetype=groovy
   "Color gradle files as groovy
   "au BufNewFile,BufRead *.gradle setf groovy
   "Color puppet files as ruby
@@ -141,13 +143,25 @@ endif "}}}
   endif
 "}}}
 
+"Switch {{{
+  "NOTE: Experimental!
+  "let g:switch_custom_definitions =
+        "\ [
+        "\   { '\(\s\)\([^ ]\+\)\(\S\?\)': '\1"\2"\3' },
+        "\ ]
+  autocmd FileType sh let b:switch_custom_definitions =
+        \ [
+        \   ['fi', 'else', 'elif']
+        \ ]
+"}}}
+
 "Sanity options{{{
   syntax on
   set backspace=indent,eol,start
   set t_kb=         "Set backspace key just in case system has weird default
   set ruler           "Character/line counts
   set mouse=a         "Ensure automatic mouse integration is enabled
-  set background=dark "Ensure dark background type
+  set background=light "Ensure dark background type
   set nostartofline   "Attempt to preserve cursor position
   set autoread        "Auto-update buffers if file is externally modified
   set hidden          "Make buffer switching work normally
