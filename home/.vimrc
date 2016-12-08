@@ -143,6 +143,8 @@ if has('gui_running')
     set guifont=Source\ Code\ Pro:h10
     set guioptions+=m
     set guioptions+=r
+  elseif has('gui_macvim')
+    set guifont=Source\ Code\ Pro\ for\ Powerline:h13
   endif
 endif "}}}
 
