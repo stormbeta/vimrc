@@ -125,6 +125,7 @@ let mapleader = ","    "<Leader> = ','
   "au BufNewFile,BufRead *.gradle setf groovy
   "Color puppet files as ruby
   au BufNewFile,BufRead *.pp setf ruby
+  au FileType go setlocal noexpandtab list listchars=tab:\ \ ,trail:· "Show trailing whitespace"
 "}}}
 
 "GUI Options {{{
