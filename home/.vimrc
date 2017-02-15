@@ -181,7 +181,6 @@ endif "}}}
   set t_kb=         "Set backspace key just in case system has weird default
   set ruler           "Character/line counts
   set mouse=a         "Ensure automatic mouse integration is enabled
-  set background=light "Ensure dark background type
   set nostartofline   "Attempt to preserve cursor position
   set autoread        "Auto-update buffers if file is externally modified
   set hidden          "Make buffer switching work normally
@@ -202,6 +201,13 @@ endif "}}}
   "colorscheme solarized
   "set t_Co=256
   "let g:solarized_termcolors=256
+
+  "Automatically use dark/light background
+  if $ITERM_PROFILE == "Light"
+    set background=light
+  else
+    set background=dark
+  endif
 
   "Theme:
   colorscheme solarized
