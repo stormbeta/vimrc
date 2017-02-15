@@ -156,7 +156,10 @@ endif "}}}
   if has('nvim')
     set clipboard=unnamedplus
   else
-    set clipboard=unnamedplus,unnamed,autoselect
+    "NOTE: add autoselect to make visual selection auto-copy
+    "      I removed it because it annoyed me when trying to replace a
+    "      highlighted region with something from the clipboard
+    set clipboard=unnamedplus,unnamed
   endif
 "}}}
 
