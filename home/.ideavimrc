@@ -14,6 +14,8 @@ inoremap wq <ESC>:wq<CR>
 inoremap qw <ESC>:wq<CR>
 nnoremap s i_<ESC>r
 
+nnoremap \\ :action VimPreviousFile<CR>
+
 set ttimeoutlen=50
 set timeoutlen=100
 

@@ -24,7 +24,7 @@ set nocompatible "Disable obsolete junk
 
   "Special
   Plug 'kana/vim-arpeggio'
-  Plug 'AndrewRadev/switch.vim'
+  "Plug 'AndrewRadev/switch.vim'
 
   "Project and workspace
   Plug 'kien/ctrlp.vim'
@@ -81,6 +81,11 @@ set nocompatible "Disable obsolete junk
   Plug 'google/vim-jsonnet'
   Plug 'elixir-lang/vim-elixir'
   Plug 'tpope/vim-markdown'
+  Plug 'zimbatm/haproxy.vim'
+  "Causes massive performance issues
+  "Plug 'chr4/sslsecure.vim'
+  Plug 'saltstack/salt-vim'
+  Plug 'elmcast/elm-vim'
 
   "Integrated Development / Language support
   Plug  'fatih/vim-go'
@@ -121,6 +126,8 @@ let mapleader = ","    "<Leader> = ','
   au BufReadPost *.conf.tmpl setlocal filetype=nginx
   au BufReadPost Jenkinsfile setlocal filetype=groovy
   au BufReadPost *.jenkinsfile setlocal filetype=groovy
+  au BufReadPost *.cfg setlocal filetype=haproxy
+  au BufReadPost *.cfg.erb setlocal filetype=haproxy
   "Color gradle files as groovy
   "au BufNewFile,BufRead *.gradle setf groovy
   "Color puppet files as ruby
