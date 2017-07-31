@@ -64,8 +64,8 @@ set nocompatible "Disable obsolete junk
   Plug 'edkolev/promptline.vim'
   Plug 'altercation/vim-colors-solarized'
   "Plug 'croaker/mustang-vim'
-  Plug 'tpope/vim-vividchalk'
-  Plug 'freeo/vim-kalisi'
+  "Plug 'tpope/vim-vividchalk'
+  "Plug 'freeo/vim-kalisi'
 
   "Syntax highlighting
   Plug 'kchmck/vim-coffee-script'
@@ -88,7 +88,8 @@ set nocompatible "Disable obsolete junk
   Plug 'elmcast/elm-vim'
 
   "Integrated Development / Language support
-  Plug  'fatih/vim-go'
+  Plug 'fatih/vim-go'
+  Plug 'slashmili/alchemist.vim'
   "Plug 'tpope/vim-fireplace'
   "Plug 'racer-rust/vim-racer'
 
@@ -99,9 +100,9 @@ set nocompatible "Disable obsolete junk
     "Plug 'guns/vim-clojure-static'
   endif
 
-  if version <= 703
+  "if version <= 703
     Plug 'ervandew/supertab'
-  endif
+  "endif
 
   if has('gui_running')
     "This is awful except in the GUI
@@ -154,7 +155,7 @@ if has('gui_running')
   elseif has('gui_macvim')
     set guifont=Source\ Code\ Pro\ for\ Powerline:h13
   endif
-endif "}}}
+endif " }}}
 
 "Clipboard settings{{{
   "Ensure vim uses system clipboard (tested on OSX)
