@@ -104,9 +104,18 @@ set nocompatible "Disable obsolete junk
     Plug 'ervandew/supertab'
   "endif
 
+  "Specials
+  if has('macunix')
+    "Required to make autoread actually work on macOS
+    Plug 'djoshea/vim-autoread'
+  endif
+
   if has('gui_running')
     "This is awful except in the GUI
     Plug 'joeytwiddle/sexy_scroller.vim'
+    "⌘ can only be bound in a GUI application
+    vnoremap <D-/> ,c 
+    nnoremap <D-/> ,c 
   endif
 
   call plug#end()
