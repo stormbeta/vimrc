@@ -220,11 +220,18 @@ endif " }}}
   "let g:solarized_termcolors=256
 
   "Automatically use dark/light background
-  if $ITERM_PROFILE == "Light"
+  let hour = strftime("%H") " Set the background light from 7am to 7pm
+  if 7 <= hour && hour < 19
     set background=light
-  else
+  else " Set to dark from 7pm to 7am
+    set background=dark
     set background=dark
   endif
+  "if $ITERM_PROFILE == "Light"
+    "set background=light
+  "else
+    "set background=dark
+  "endif
 
   "Theme:
   colorscheme solarized
@@ -266,6 +273,7 @@ endif " }}}
   set softtabstop=2 "Ensure spaces can be easily deleted
   set shiftwidth=2 "?
   set expandtab   "Enable for tabs to become spaces
+  let g:jsonnet_fmt_options = '--indent 2'
 "}}}
 
 "Search options{{{

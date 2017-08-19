@@ -63,9 +63,11 @@
     ;; :pigments
     :linter-puppet-lint
     :language-puppet
+    :google/language-jsonnet
     :fuzzy-finder
     :language-terraform
     :mschuchard/linter-terraform-syntax
+    :atom-alignment
   ]
 
   ;; Packages that you want to disable.
