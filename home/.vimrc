@@ -109,6 +109,8 @@ set nocompatible "Disable obsolete junk
   if has('macunix')
     "Required to make autoread actually work on macOS
     Plug 'djoshea/vim-autoread'
+    "Disable swap warning on macOS since we have autoread enabled
+    set shortmess+=A
   endif
 
   if has('gui_running')
