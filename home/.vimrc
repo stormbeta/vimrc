@@ -141,6 +141,7 @@ let mapleader = ","    "<Leader> = ','
   au BufReadPost *.jenkinsfile setlocal filetype=groovy
   au BufReadPost *.cfg setlocal filetype=haproxy
   au BufReadPost *.cfg.erb setlocal filetype=haproxy
+  au BufReadPost *.ctmpl setlocal filetype=gotexttmpl
   "Color gradle files as groovy
   "au BufNewFile,BufRead *.gradle setf groovy
   "Color puppet files as ruby
