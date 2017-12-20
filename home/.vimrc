@@ -86,6 +86,7 @@ set nocompatible "Disable obsolete junk
   "Plug 'chr4/sslsecure.vim'
   Plug 'saltstack/salt-vim'
   Plug 'elmcast/elm-vim'
+  Plug 'b4b4r07/vim-hcl'
 
   "Integrated Development / Language support
   Plug 'fatih/vim-go'
