@@ -49,6 +49,7 @@ set nocompatible "Disable obsolete junk
   Plug 'yegappan/mru'
   Plug 'tpope/vim-dispatch'
   Plug 'junegunn/vim-easy-align'
+  Plug 'editorconfig/editorconfig-vim'
 
   "Movement and textobj
   Plug 'Lokaltog/vim-easymotion'
@@ -87,6 +88,7 @@ set nocompatible "Disable obsolete junk
   Plug 'saltstack/salt-vim'
   Plug 'elmcast/elm-vim'
   Plug 'b4b4r07/vim-hcl'
+  Plug 'udalov/kotlin-vim'
 
   "Integrated Development / Language support
   Plug 'fatih/vim-go'
@@ -271,12 +273,12 @@ endif " }}}
 "}}}
 
 "Indent settings{{{
-  set smartindent  "Automatic indenting
+  set smartindent   "Automatic indenting
   set autoindent
-  set tabstop=2    "Number of spaces a tab mimics
+  set tabstop=2     "Number of spaces a tab mimics
   set softtabstop=2 "Ensure spaces can be easily deleted
-  set shiftwidth=2 "?
-  set expandtab   "Enable for tabs to become spaces
+  set shiftwidth=2  "?
+  set expandtab     "Enable for tabs to become spaces
   let g:jsonnet_fmt_options = '--indent 2'
 "}}}
 
@@ -297,14 +299,15 @@ endif " }}}
   endif
   set backupdir=~/.vim-backup
   set dir=~/.vim-backup
-  set showmatch      "Flash matching parens
-  set wildmenu       "Menubar
+  set showmatch       "Flash matching parens
+  set wildmenu        "Menubar
   set wildmode=list:longest
-  set scrolloff=4    "Auto-scrolls screen near edges
+  set scrolloff=4     "Auto-scrolls screen near edges
   set sidescrolloff=5 "Auto-scrolls screen near horizontal
   set updatetime=2000 "Affects visual marker indicators
-  set modelines=0    "Modelines are a security risk
+  set modelines=0     "Modelines are a security risk
   set diffopt+=iwhite "Ignore whitespace in diff mode
+
   "Go to last cursor position when reopening file
   au BufReadPost *
    \ if line("'\"") > 1 && line("'\"") <= line("$") |
