@@ -64,9 +64,6 @@ set nocompatible "Disable obsolete junk
   Plug 'vim-airline/vim-airline-themes'
   Plug 'edkolev/promptline.vim'
   Plug 'altercation/vim-colors-solarized'
-  "Plug 'croaker/mustang-vim'
-  "Plug 'tpope/vim-vividchalk'
-  "Plug 'freeo/vim-kalisi'
 
   "Syntax highlighting
   Plug 'kchmck/vim-coffee-script'
@@ -79,7 +76,6 @@ set nocompatible "Disable obsolete junk
   Plug 'davidzchen/vim-bazel'
   Plug 'rust-lang/rust.vim'
   Plug 'hashivim/vim-terraform'
-  Plug 'google/vim-jsonnet'
   Plug 'elixir-lang/vim-elixir'
   Plug 'tpope/vim-markdown'
   Plug 'zimbatm/haproxy.vim'
@@ -91,25 +87,29 @@ set nocompatible "Disable obsolete junk
   Plug 'udalov/kotlin-vim'
 
   "Integrated Development / Language support
-  Plug 'fatih/vim-go'
-  Plug 'slashmili/alchemist.vim'
-  "Plug 'tpope/vim-fireplace'
-  "Plug 'racer-rust/vim-racer'
+  "For stuff that goes beyond mere syntax highlighting
+  Plug 'fatih/vim-go'             " Golang
+  Plug 'google/vim-jsonnet'       " Jsonnet autoformat/linting
+  "Plug 'slashmili/alchemist.vim' " Elixir
+  "Plug 'tpope/vim-fireplace'     " Clojure
+  "Plug 'racer-rust/vim-racer'    " Rust
 
   "Version dependent
   if version >= 704
-    Plug 'Valloric/YouCompleteMe'
+    " YouCompleteMe requires manual installation
+    "Plug 'Valloric/YouCompleteMe'
+
+    " NOTE: I think this might be baked into vim now
     Plug 'eiginn/netrw'
-    "Plug 'guns/vim-clojure-static'
   endif
 
-  "if version <= 703
+  if version <= 703
     Plug 'ervandew/supertab'
-  "endif
+  endif
 
   "Specials
   if has('macunix')
-    "Required to make autoread actually work on macOS
+    "Required to make autoread/autoreload actually work on macOS
     Plug 'djoshea/vim-autoread'
     "Disable swap warning on macOS since we have autoread enabled
     set shortmess+=A
@@ -119,8 +119,8 @@ set nocompatible "Disable obsolete junk
     "This is awful except in the GUI
     Plug 'joeytwiddle/sexy_scroller.vim'
     "⌘ can only be bound in a GUI application
-    vnoremap <D-/> ,c 
-    nnoremap <D-/> ,c 
+    vnoremap <D-/> ,c
+    nnoremap <D-/> ,c
   endif
 
   call plug#end()
@@ -144,9 +144,6 @@ let mapleader = ","    "<Leader> = ','
   au BufReadPost *.cfg setlocal filetype=haproxy
   au BufReadPost *.cfg.erb setlocal filetype=haproxy
   au BufReadPost *.ctmpl setlocal filetype=gotexttmpl
-  "Color gradle files as groovy
-  "au BufNewFile,BufRead *.gradle setf groovy
-  "Color puppet files as ruby
   au BufNewFile,BufRead *.pp setf ruby
   au FileType go setlocal noexpandtab list listchars=tab:\ \ ,trail:· "Show trailing whitespace"
 "}}}
@@ -177,6 +174,8 @@ endif " }}}
   "Note that linux needs +xterm_clipboard feature compiled in
   "Works in Windows and OSX!
   if has('nvim')
+    " NOTE: this is also the correct setting for IdeaVim, but you'll need to
+    " set it in ~/.ideavimrc directly as IdeaVim doesn't understand if/else
     set clipboard=unnamedplus
   else
     "NOTE: add autoselect to make visual selection auto-copy
@@ -187,15 +186,6 @@ endif " }}}
 "}}}
 
 "Switch {{{
-  "NOTE: Experimental!
-  "let g:switch_custom_definitions =
-        "\ [
-        "\   { '\(\s\)\([^ ]\+\)\(\S\?\)': '\1"\2"\3' },
-        "\ ]
-  autocmd FileType sh let b:switch_custom_definitions =
-        \ [
-        \   ['fi', 'else', 'elif']
-        \ ]
 "}}}
 
 "Sanity options{{{
@@ -216,10 +206,19 @@ endif " }}}
   noremap Y y$
   "Bash only - fixes spurious stdout/stderr output from some plugins
   let &shellpipe="&>"
+
+  "Regex {{{
+    "Use normal regex behavior by default instead of literal matching
+    "nnoremap / /\v
+    "vnoremap / /\v
+    set gdefault   "Set substitution global flag by default
+  "}}}
+
 "}}}
 
-"Theme and color settings{{{
 
+
+"Theme and color settings{{{
   "Only enable for generating promptline snapshot
   "colorscheme solarized
   "set t_Co=256
@@ -262,10 +261,11 @@ endif " }}}
 
 
   "Allows transparent terminal background to persist within vim
-  highlight Normal ctermbg=none
-  highlight NonText ctermbg=none
+  "highlight Normal ctermbg=none
+  "highlight NonText ctermbg=none
 
   "Enable italics if custom terminfo available
+  "See: https://github.com/stormbeta/bashrc/blob/master/home/.bashrc#L7
   if $TERM =~ "italic"
     highlight Comment cterm=italic
   endif
@@ -332,51 +332,9 @@ endif " }}}
   au FileType vim set foldlevel=0
 "}}}
 
-"Commands (ARPEGGIO) {{{
-  "Arpeggio: Bindings (must come first)
-  "Binding operator keys is bad idea =/
-  "Arpeggio nnoremap ewr :Extradite<cr>
-  " Arpeggio nnoremap qwe :NERDTreeToggle<cr>
-  "Surround:
-  Arpeggio nmap oi ysiw
-  "Saving:
-  "Arpeggio nnoremap qwer :wq<cr>
-  Arpeggio nnoremap qw :w<cr>
-  Arpeggio inoremap qw <Esc>:w<cr>
-  "Arpeggio nnoremap we :Switch<cr>
-  Arpeggio nmap we ysiW
-  "EasyMotion:
-  "Arpeggio nnoremap we <Leader>w
-  "Comment:
-  call arpeggio#map('nv','',1,'re',',c ')
-  "Arpeggio nnoremap fg [{zf]}
-  "au FileType java Arpeggio imap ui <c-x><c-u>
-  Arpeggio nnoremap /. :%!perl -pe 's//'<left><left>
-  Arpeggio vnoremap /. :!perl -pe 's//'<left><left>
-  "Buffers: mappings{{{
-    "call arpeggio#map('nv','',0,
-  "}}}
-  Arpeggio inoremap kj <Esc>
-  Arpeggio vnoremap kj <Esc>
-  Arpeggio inoremap kl <c-n>
-  Arpeggio inoremap KL <c-p>
-  "inner word movement
-  "call arpeggio#map('nv','',1,'we',',w')
-  "call arpeggio#map('nv','',1,'WE',',b')
-  "Arpeggio nnoremap jh ``
-
-  "Zen Coding{{{
-    " au FileType html,xml Arpeggio imap uio <c-y>,>
-    "au FileType html,xml Arpeggio imap ui <c-y>,<cr><Esc>ko
-    "au FileType html,xml Arpeggio imap uio <c-y>,
-    " au FileType html,xml Arpeggio vmap ui <c-y>,
-    "au FileType html,xml Arpeggio imap op <c-y>n
-    "au FileType html,xml Arpeggio imap io <c-y>N
-    "au FileType html,xml Arpeggio nmap re <c-y>/
-  "}}}
-"}}}
-
 "Commands (Normal) {{{
+  "Open Gundo Pane
+  nnoremap <Leader>u :GundoToggle<CR>
   "Sane substitution
   vnoremap <Leader>/ :s/\%V/<Left>
   vmap <enter> <Plug>(EasyAlign)
@@ -436,8 +394,8 @@ endif " }}}
   nnoremap <Leader>p :CtrlPMRUFiles<cr>
   "let g:ctrlp_extensions = [ 'tag' ]
   "Comment: toggle
-  "nmap <Leader>, ,c 
-  "vmap <Leader>, ,c 
+  "nmap <Leader>, ,c
+  "vmap <Leader>, ,c
 
   "Ag/Ack config
   "let g:ackpreview=1
@@ -446,7 +404,7 @@ endif " }}}
   "let g:ack_autoclose=1
   if executable('ag')
     let g:ackprg="ag --column --nocolor --nogroup"
-    map <Leader>a :Ack 
+    map <Leader>a :Ack
     set grepprg=ag\ --nogroup\ --nocolor
 
     "TODO: Consider mapping file list from git where possible
@@ -455,7 +413,7 @@ endif " }}}
     "let g:ctrlp_use_caching = 0
   else
     let g:ackprg="ack-grep --nocolor --nogroup --column"
-    map <Leader>a :Ack 
+    map <Leader>a :Ack
     set grepprg=ack-grep\ --nogroup\ --nocolor\ --no-binary
   endif
 
@@ -476,48 +434,6 @@ endif " }}}
 
   "Macros: {{{
   "}}}
-"}}}
-
-"Regex stuff {{{
-  "Use normal regex behavior by default instead of literal matching
-  "nnoremap / /\v
-  "vnoremap / /\v
-  set gdefault   "Set substitution to global default
-"}}}
-
-"Completion {{{
-  "TODO: Revisit these settings
-  "set completeopt+=longest,menu
-
-  "au FileType java let g:neocomplcache_enable_at_startup=0
-  "au FileType java call NeoComplCacheDisable()
-  "let g:acp_enableAtStartup = 0
-  "au FileType java let g:acp_enableAtStartup=0
-  " autocmd BufRead,BufNew,FileWriteCmd call showmarks#ShowMarks('global,enable')
-   "au FileType java let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
-   "autocmd FileType java let g:acp_behaviorUserDefinedFunction = "<c-x><c-u>"
-  " autocmd FileType java let g:neocomplcache_enable_at_startup = 1
-  " autocmd FileType java let g:acp_enableAtStartup = 1
-  " let g:neocomplcache_enable_auto_select=1
-  " autocmd FileType java setlocal omnifunc="<c-x><c-u>"
-   "autocmd FileType java inoremap . .<c-x><c-u>
-  "autocmd FileType java 
-   au FileType xjb set filetype=xml
-  " inoremap <a-j> <c-n>
-  " inoremap <a-k> <c-p>
-
-  " C++OmniCompl plugin settings
-  " set tags+=~/.vim/tags/cpptags
-  " let OmniCpp_NamespaceSearch = 1
-  " let OmniCpp_GlobalScopeSearch = 1
-  " let OmniCpp_ShowAccess = 1
-  " let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-  " let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-  " let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-  " let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-  " let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-  " au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-  " set completeopt=menuone,menu,longest,preview
 "}}}
 
 "Movement {{{
@@ -560,10 +476,91 @@ endif " }}}
   " inoremap kk <Esc>
 "}}}
 
-"F-Key mappings {{{
-  nnoremap <F4> :GundoToggle<CR>
-  nnoremap <F5> :NERDTreeToggle<CR>
-  nnoremap <F6> :TlistToggle<CR>
+" NOTE: HERE BE DRAGONS BELOW
+
+"Commands (ARPEGGIO) {{{
+  "Arpeggio: Bindings (must come first)
+  "Binding operator keys is bad idea =/
+  "Arpeggio nnoremap ewr :Extradite<cr>
+  " Arpeggio nnoremap qwe :NERDTreeToggle<cr>
+  "Surround:
+  Arpeggio nmap oi ysiw
+  "Saving:
+  "Arpeggio nnoremap qwer :wq<cr>
+  Arpeggio nnoremap qw :w<cr>
+  Arpeggio inoremap qw <Esc>:w<cr>
+  "Arpeggio nnoremap we :Switch<cr>
+  Arpeggio nmap we ysiW
+  "EasyMotion:
+  "Arpeggio nnoremap we <Leader>w
+  "Comment:
+  call arpeggio#map('nv','',1,'re',',c ')
+  "Arpeggio nnoremap fg [{zf]}
+  "au FileType java Arpeggio imap ui <c-x><c-u>
+  Arpeggio nnoremap /. :%!perl -pe 's//'<left><left>
+  Arpeggio vnoremap /. :!perl -pe 's//'<left><left>
+  "Buffers: mappings{{{
+    "call arpeggio#map('nv','',0,
+  "}}}
+  Arpeggio inoremap kj <Esc>
+  Arpeggio vnoremap kj <Esc>
+  Arpeggio inoremap kl <c-n>
+  Arpeggio inoremap KL <c-p>
+  "inner word movement
+  "call arpeggio#map('nv','',1,'we',',w')
+  "call arpeggio#map('nv','',1,'WE',',b')
+  "Arpeggio nnoremap jh ``
+
+  "Zen Coding{{{
+    " au FileType html,xml Arpeggio imap uio <c-y>,>
+    "au FileType html,xml Arpeggio imap ui <c-y>,<cr><Esc>ko
+    "au FileType html,xml Arpeggio imap uio <c-y>,
+    " au FileType html,xml Arpeggio vmap ui <c-y>,
+    "au FileType html,xml Arpeggio imap op <c-y>n
+    "au FileType html,xml Arpeggio imap io <c-y>N
+    "au FileType html,xml Arpeggio nmap re <c-y>/
+  "}}}
+"}}}
+
+"Completion {{{
+  "TODO: Revisit these settings
+  "set completeopt+=longest,menu
+
+  "au FileType java let g:neocomplcache_enable_at_startup=0
+  "au FileType java call NeoComplCacheDisable()
+  "let g:acp_enableAtStartup = 0
+  "au FileType java let g:acp_enableAtStartup=0
+  " autocmd BufRead,BufNew,FileWriteCmd call showmarks#ShowMarks('global,enable')
+   "au FileType java let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+   "autocmd FileType java let g:acp_behaviorUserDefinedFunction = "<c-x><c-u>"
+  " autocmd FileType java let g:neocomplcache_enable_at_startup = 1
+  " autocmd FileType java let g:acp_enableAtStartup = 1
+  " let g:neocomplcache_enable_auto_select=1
+  " autocmd FileType java setlocal omnifunc="<c-x><c-u>"
+   "autocmd FileType java inoremap . .<c-x><c-u>
+  "autocmd FileType java
+   au FileType xjb set filetype=xml
+  " inoremap <a-j> <c-n>
+  " inoremap <a-k> <c-p>
+
+  " C++OmniCompl plugin settings
+  " set tags+=~/.vim/tags/cpptags
+  " let OmniCpp_NamespaceSearch = 1
+  " let OmniCpp_GlobalScopeSearch = 1
+  " let OmniCpp_ShowAccess = 1
+  " let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+  " let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+  " let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+  " let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+  " let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+  " au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+  " set completeopt=menuone,menu,longest,preview
+"}}}
+
+"Old F-Key mappings {{{
+  "nnoremap <F4> :GundoToggle<CR>
+  "nnoremap <F5> :NERDTreeToggle<CR>
+  "nnoremap <F6> :TlistToggle<CR>
   "nnoremap <f8> :silent make<CR><C-l>
   "inoremap <f8> <Esc>:silent make<CR><C-l>
   "nnoremap <s-f8> :execute CCompile()<CR>
@@ -604,7 +601,7 @@ function! GetVisual() range
   let regtype_save = getregtype('"')
   let cb_save = &clipboard
   set clipboard&
-  "Put the current visual selection in the " register 
+  "Put the current visual selection in the " register
   normal! ""gvy
   let selection = getreg('"')
   " Put the saved registers and clipboards back
