@@ -52,7 +52,11 @@ set nocompatible "Disable obsolete junk
   Plug 'editorconfig/editorconfig-vim'
 
   "Movement and textobj
-  Plug 'Lokaltog/vim-easymotion'
+  Plug 'easymotion/vim-easymotion'
+  Plug 'haya14busa/incsearch.vim'
+  Plug 'haya14busa/incsearch-easymotion.vim'
+  Plug 'haya14busa/incsearch-fuzzy.vim'
+
   Plug 'vim-scripts/camelcasemotion'
   Plug 'kana/vim-textobj-user'
   Plug 'kana/vim-textobj-indent'
@@ -421,7 +425,8 @@ endif " }}}
   nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
   "EasyMotion:
-  let g:EasyMotion_leader_key = '<Leader>w'
+  "let g:EasyMotion_leader_key = '<Leader>w'
+  "map <Leader>r <Plug>(easymotion-prefix)
 
   " Repeat last command action?
   "inoremap <c-.> <Esc>:<c-p><cr>
@@ -493,6 +498,8 @@ endif " }}}
   Arpeggio nmap we ysiW
   "EasyMotion:
   "Arpeggio nnoremap we <Leader>w
+  "Arpeggio nmap df <Plug>(easymotion-bd-w)
+  Arpeggio nmap df <Plug>(easymotion-prefix)
   "Comment:
   call arpeggio#map('nv','',1,'re',',c ')
   "Arpeggio nnoremap fg [{zf]}
@@ -506,6 +513,14 @@ endif " }}}
   Arpeggio vnoremap kj <Esc>
   Arpeggio inoremap kl <c-n>
   Arpeggio inoremap KL <c-p>
+
+  "avoid excessive use of shift
+  Arpeggio inoremap l; :
+  Arpeggio inoremap ;' "
+  Arpeggio inoremap f9 (
+  Arpeggio inoremap f0 )
+  Arpeggio inoremap kl <Esc>:w<cr>
+
   "inner word movement
   "call arpeggio#map('nv','',1,'we',',w')
   "call arpeggio#map('nv','',1,'WE',',b')
@@ -617,3 +632,21 @@ endfunction
 
 " Start the find and replace command across the entire file
 vnoremap <C-r> <Esc>:%s/<c-r>=GetVisual()<cr>/
+
+" Source: https://github.com/easymotion/vim-easymotion README
+" You can use other keymappings like <C-l> instead of <CR> if you want to
+" use these mappings as default search and somtimes want to move cursor with
+" EasyMotion.
+function! s:incsearch_config(...) abort
+  return incsearch#util#deepextend(deepcopy({
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {
+  \     "\<CR>": '<Over>(easymotion)'
+  \   },
+  \   'is_expr': 0
+  \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
+noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
