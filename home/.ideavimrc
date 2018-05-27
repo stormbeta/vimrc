@@ -13,6 +13,8 @@ vnoremap <backspace> d
 inoremap wq <ESC>:wq<CR>
 inoremap qw <ESC>:wq<CR>
 nnoremap s i_<ESC>r
+inoremap kl <ESC>:w<CR>
+inoremap lk <ESC>:w<CR>
 
 nnoremap \\ :action VimPreviousFile<CR>
 

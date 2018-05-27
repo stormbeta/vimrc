@@ -94,12 +94,16 @@ set nocompatible "Disable obsolete junk
   "For stuff that goes beyond mere syntax highlighting
   Plug 'fatih/vim-go'             " Golang
   Plug 'google/vim-jsonnet'       " Jsonnet autoformat/linting
+  Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-db'
   "Plug 'slashmili/alchemist.vim' " Elixir
   "Plug 'tpope/vim-fireplace'     " Clojure
   "Plug 'racer-rust/vim-racer'    " Rust
+  Plug 'vim-syntastic/syntastic'
 
   "Version dependent
   if version >= 704
+    Plug 'ajh17/VimCompletesMe'
     " YouCompleteMe requires manual installation
     "Plug 'Valloric/YouCompleteMe'
 
@@ -127,11 +131,20 @@ set nocompatible "Disable obsolete junk
     nnoremap <D-/> ,c
   endif
 
+  if $KEYBOARD_LAYOUT == "Colemak"
+    Plug 'jooize/vim-colemak'
+  endif
+
   call plug#end()
 
   "call showmarks#ShowMarks('global,enable') "Visual marks
   call arpeggio#load()   "Key chord binding!
 "}}}
+
+if $KEYBOARD_LAYOUT == "Colemak"
+  nmap ; p
+  nmap y o
+endif
 
 let mapleader = ","    "<Leader> = ','
 
@@ -192,7 +205,7 @@ endif " }}}
 "Switch {{{
 "}}}
 
-"Sanity options{{{
+"Behavior preferences{{{
   syntax on
   set backspace=indent,eol,start
   set t_kb=         "Set backspace key just in case system has weird default
@@ -211,6 +224,8 @@ endif " }}}
   "Bash only - fixes spurious stdout/stderr output from some plugins
   let &shellpipe="&>"
 
+  let g:syntastic_sh_checkers = ['shellcheck']
+
   "Regex {{{
     "Use normal regex behavior by default instead of literal matching
     "nnoremap / /\v
@@ -219,8 +234,6 @@ endif " }}}
   "}}}
 
 "}}}
-
-
 
 "Theme and color settings{{{
   "Only enable for generating promptline snapshot
@@ -337,6 +350,8 @@ endif " }}}
 "}}}
 
 "Commands (Normal) {{{
+  nnoremap vv V
+  vnoremap <Space> G
   "Open Gundo Pane
   nnoremap <Leader>u :GundoToggle<CR>
   "Sane substitution
@@ -511,8 +526,6 @@ endif " }}}
   "}}}
   Arpeggio inoremap kj <Esc>
   Arpeggio vnoremap kj <Esc>
-  Arpeggio inoremap kl <c-n>
-  Arpeggio inoremap KL <c-p>
 
   "avoid excessive use of shift
   Arpeggio inoremap l; :
@@ -520,6 +533,7 @@ endif " }}}
   Arpeggio inoremap f9 (
   Arpeggio inoremap f0 )
   Arpeggio inoremap kl <Esc>:w<cr>
+  "Arpeggio nnoremap lk :w<cr>
 
   "inner word movement
   "call arpeggio#map('nv','',1,'we',',w')
