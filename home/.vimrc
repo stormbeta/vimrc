@@ -157,6 +157,7 @@ let mapleader = ","    "<Leader> = ','
   au BufReadPost *.gradle setlocal filetype=groovy
   au BufReadPost *.conf.tmpl setlocal filetype=nginx
   au BufReadPost Jenkinsfile setlocal filetype=groovy
+  au BufReadPost .ansible-lint setlocal filetype=yaml
   au BufReadPost *.jenkinsfile setlocal filetype=groovy
   au BufReadPost *.cfg setlocal filetype=haproxy
   au BufReadPost *.cfg.erb setlocal filetype=haproxy
@@ -182,7 +183,8 @@ if has('gui_running')
     set guioptions+=m
     set guioptions+=r
   elseif has('gui_macvim')
-    set guifont=Source\ Code\ Pro\ for\ Powerline:h13
+    "set guifont=Source\ Code\ Pro\ for\ Powerline:h20
+    set guifont=Iosevka\ Term:h15
   endif
 endif " }}}
 

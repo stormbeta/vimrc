@@ -1,0 +1,14 @@
+{
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "Iosevka, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 15,
+    "vim.leader": ",",
+    "vim.useSystemClipboard": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [";"],
+            "after": [":"]
+        }
+    ],
+    "python.jediEnabled": false
+}
