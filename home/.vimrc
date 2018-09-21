@@ -68,7 +68,6 @@ set nocompatible "Disable obsolete junk
   "Plug 'vim-airline/vim-airline'
   "Plug 'vim-airline/vim-airline-themes'
   Plug 'mkitt/tabline.vim'
-  "Plug 'edkolev/promptline.vim'
   Plug 'itchyny/lightline.vim'
   Plug 'altercation/vim-colors-solarized'
 
@@ -223,7 +222,8 @@ endif " }}}
   set showcmd         "Display normal mode cmds in lower left
   set tildeop         "Ensure ~ behaves like an operator
   set list listchars=tab:→\ ,trail:· "Show trailing whitespace"
-  set linebreak     "Don't split lines mid-word
+  set linebreak       "Don't split lines mid-word
+  set showtabline=2   " Always show tabline
   "Make Y behave like the other operator capitals
   noremap Y y$
   "Bash only - fixes spurious stdout/stderr output from some plugins
@@ -287,15 +287,6 @@ endif " }}}
   ""Airline Performance workarounds
   "let g:airline_highlighting_cache = 1
   "let g:airline_theme='dark_minimal'
-
-  "Promptline:
-  "let g:promptline_preset = {
-        "\'a' : [ promptline#slices#python_virtualenv(), '$(rbenv local 2>/dev/null)', '$(if [[ "${NVM_BIN}/node" == "$(which node || true)" ]]; then echo $NVM_BIN | grep -Eo "node/v([0-9]+\.?)+"; fi)'],
-        "\'b' : [ '${HOSTNAME}' ],
-        "\'c' : [ promptline#slices#cwd() ],
-        "\'y' : [ promptline#slices#vcs_branch(), promptline#slices#git_status() ],
-        "\'warn' : [ promptline#slices#last_exit_code() ]}
-
 
   "Allows transparent terminal background to persist within vim
   "highlight Normal ctermbg=none
@@ -422,8 +413,8 @@ endif " }}}
   nnoremap <Leader>gp :Git pull
 
   "Like alt+tab, but for buffers
-  nnoremap <silent> \ :bnext<cr>
-  nnoremap <silent> <s-\> :bprev<cr>
+  nnoremap <silent> \ :tabn<cr>
+  nnoremap <silent> <s-\> :tabp<cr>
 
   "Open: fuzzy matching with CtrlP / MRU
   nnoremap <Leader>o :CtrlP<cr>
