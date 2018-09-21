@@ -64,9 +64,12 @@ set nocompatible "Disable obsolete junk
   Plug 'reedes/vim-textobj-sentence'
 
   "Theming/UI
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'edkolev/promptline.vim'
+  "NOTE: airline is pretty slow even with the performance tweaks enabled
+  "Plug 'vim-airline/vim-airline'
+  "Plug 'vim-airline/vim-airline-themes'
+  Plug 'mkitt/tabline.vim'
+  "Plug 'edkolev/promptline.vim'
+  Plug 'itchyny/lightline.vim'
   Plug 'altercation/vim-colors-solarized'
 
   "Syntax highlighting
@@ -263,20 +266,35 @@ endif " }}}
   "General:
   set t_Co=256
 
+  "Lightline:
+  let g:lightline = {
+    \ 'colorscheme': 'solarized',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head'
+    \ },
+    \ }
+
   "Airline:
-  let g:airline_powerline_fonts = 1
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#left_sep = ' '
-  let g:airline#extensions#tabline#left_alt_sep = '|'
-  let g:airline_theme='solarized'
+  "let g:airline_powerline_fonts = 1
+  "let g:airline#extensions#tabline#enabled = 1
+  "let g:airline#extensions#tabline#left_sep = ' '
+  "let g:airline#extensions#tabline#left_alt_sep = '|'
+  ""let g:airline_theme='solarized'
+  ""Airline Performance workarounds
+  "let g:airline_highlighting_cache = 1
+  "let g:airline_theme='dark_minimal'
 
   "Promptline:
-  let g:promptline_preset = {
-        \'a' : [ promptline#slices#python_virtualenv(), '$(rbenv local 2>/dev/null)', '$(if [[ "${NVM_BIN}/node" == "$(which node || true)" ]]; then echo $NVM_BIN | grep -Eo "node/v([0-9]+\.?)+"; fi)'],
-        \'b' : [ '${HOSTNAME}' ],
-        \'c' : [ promptline#slices#cwd() ],
-        \'y' : [ promptline#slices#vcs_branch(), promptline#slices#git_status() ],
-        \'warn' : [ promptline#slices#last_exit_code() ]}
+  "let g:promptline_preset = {
+        "\'a' : [ promptline#slices#python_virtualenv(), '$(rbenv local 2>/dev/null)', '$(if [[ "${NVM_BIN}/node" == "$(which node || true)" ]]; then echo $NVM_BIN | grep -Eo "node/v([0-9]+\.?)+"; fi)'],
+        "\'b' : [ '${HOSTNAME}' ],
+        "\'c' : [ promptline#slices#cwd() ],
+        "\'y' : [ promptline#slices#vcs_branch(), promptline#slices#git_status() ],
+        "\'warn' : [ promptline#slices#last_exit_code() ]}
 
 
   "Allows transparent terminal background to persist within vim
