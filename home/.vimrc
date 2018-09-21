@@ -41,7 +41,8 @@ set nocompatible "Disable obsolete junk
   "Causes problems with buffer swapping
   "Plug 'juanpabloaj/ShowMarks'
   Plug 'scrooloose/nerdcommenter'
-  Plug 'sjl/gundo.vim'
+  "Plug 'sjl/gundo.vim' " No longer maintained :(
+  Plug 'mbbill/undotree'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
   Plug 'vim-scripts/taglist.vim'
