@@ -165,6 +165,7 @@ let mapleader = ","    "<Leader> = ','
   au BufReadPost *.cfg setlocal filetype=haproxy
   au BufReadPost *.cfg.erb setlocal filetype=haproxy
   au BufReadPost *.ctmpl setlocal filetype=gotexttmpl
+  au BufReadPost *.libjsonnet setlocal filetype=jsonnet
   au BufNewFile,BufRead *.pp setf ruby
   au FileType go setlocal noexpandtab list listchars=tab:\ \ ,trail:· "Show trailing whitespace"
 "}}}
