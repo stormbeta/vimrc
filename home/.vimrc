@@ -33,7 +33,7 @@ set nocompatible "Disable obsolete junk
   Plug 'scrooloose/nerdtree'
 
   "Source control
-  Plug 'int3/vim-extradite'
+  Plug 'tap349/vim-extradite'
   Plug 'tpope/vim-fugitive'
 
   "Misc / uncategorized
@@ -92,6 +92,9 @@ set nocompatible "Disable obsolete junk
   Plug 'elmcast/elm-vim'
   Plug 'b4b4r07/vim-hcl'
   Plug 'udalov/kotlin-vim'
+  Plug 'vim-scripts/groovyindent-unix'
+  Plug 'elubow/cql-vim'
+  Plug 'cespare/vim-toml'
 
   "Integrated Development / Language support
   "For stuff that goes beyond mere syntax highlighting
@@ -160,6 +163,7 @@ let mapleader = ","    "<Leader> = ','
   au BufReadPost *.gradle setlocal filetype=groovy
   au BufReadPost *.conf.tmpl setlocal filetype=nginx
   au BufReadPost Jenkinsfile setlocal filetype=groovy
+  au BufReadPost Jenkinsfile.* setlocal filetype=groovy
   au BufReadPost .ansible-lint setlocal filetype=yaml
   au BufReadPost *.jenkinsfile setlocal filetype=groovy
   au BufReadPost *.cfg setlocal filetype=haproxy
@@ -253,7 +257,6 @@ endif " }}}
   if 7 <= hour && hour < 19
     set background=light
   else " Set to dark from 7pm to 7am
-    set background=dark
     set background=dark
   endif
   "if $ITERM_PROFILE == "Light"
@@ -365,21 +368,29 @@ endif " }}}
 "Commands (Normal) {{{
   nnoremap vv V
   vnoremap <Space> G
-  "Open Gundo Pane
-  nnoremap <Leader>u :GundoToggle<CR>
+
+  "Undotree
+  nnoremap <Leader>u :UndotreeToggle<CR>
+
   "Sane substitution
   vnoremap <Leader>/ :s/\%V/<Left>
+  nnoremap <Leader>/ q/
   vmap <enter> <Plug>(EasyAlign)
+
   "Easier command entry
   nnoremap ; :
   vnoremap ; :
+  " TODO: I don't think I ever use q: as I rarely enter vim commands directly
   nnoremap q; q:
   vnoremap q; q:
+
   "Single character replace
   nnoremap s i_<ESC>r
+
   "Don't leave visual mode while shifting indents
   vnoremap < <gv
   vnoremap > >gv
+
   "CamelCaseMovement: Plugin
   omap ow i,w
   vmap ow i,w
@@ -395,7 +406,9 @@ endif " }}}
   inoremap <c-s> <Esc>:w<cr>
   nnoremap <c-s> :w<cr>
 
+  "Open new pane to the right
   nnoremap <C-w>v <C-w>v<C-w>l
+
   "Clear searches
   nnoremap <Leader><space> :noh<CR>
 
@@ -600,7 +613,6 @@ endif " }}}
 "}}}
 
 "Old F-Key mappings {{{
-  "nnoremap <F4> :GundoToggle<CR>
   "nnoremap <F5> :NERDTreeToggle<CR>
   "nnoremap <F6> :TlistToggle<CR>
   "nnoremap <f8> :silent make<CR><C-l>
