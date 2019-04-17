@@ -156,7 +156,6 @@ let mapleader = ","    "<Leader> = ','
 
 "Formating and Filetypes {{{
   filetype plugin indent on
-  au FileType * setlocal formatoptions-=o
   au BufReadPost *.cup setlocal filetype=java
   au BufReadPost *.as setlocal filetype=actionscript
   au BufReadPost *.eyaml setlocal filetype=yaml
@@ -324,11 +323,11 @@ endif " }}}
 
 "Misc options {{{
   set number           "Relative is too slow except in the GUI
-  if version >= 703
-    set undofile       "Persistant undo history
+  if version>=703
+    set undofile        "Persistant undo history
     set undodir=~/.vim-backup
-    set autowrite      "Autosave when appropriate (not 7.3 specific)
-    set colorcolumn=120
+    set autowrite       "Autosave when appropriate
+    set colorcolumn=120 "highlight column indicated
   endif
   set backupdir=~/.vim-backup
   set dir=~/.vim-backup
@@ -337,9 +336,16 @@ endif " }}}
   set wildmode=list:longest
   set scrolloff=4     "Auto-scrolls screen near edges
   set sidescrolloff=5 "Auto-scrolls screen near horizontal
-  set updatetime=2000 "Affects visual marker indicators
+  set updatetime=2000 "Affects visual marker indicators e.g. git status
   set modelines=0     "Modelines are a security risk
   set diffopt+=iwhite "Ignore whitespace in diff mode
+
+  "Auto-formatting
+  set textwidth=100    " Set wrap width for gq, auto-wrap comments
+  set formatoptions-=t " Disable auto-wrapping text (unless part of a comment)
+  "Disable o/O from assuming new line should be a comment when next to a comment
+  "This must be set via autocommand as many plugins alter formatoptions
+  au FileType * setlocal formatoptions-=o
 
   "Go to last cursor position when reopening file
   au BufReadPost *
