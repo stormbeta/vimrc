@@ -434,8 +434,10 @@ endif " }}}
   nnoremap <Leader>gp :Git pull
 
   "Like alt+tab, but for buffers
-  nnoremap <silent> \ :tabn<cr>
-  nnoremap <silent> <s-\> :tabp<cr>
+  nnoremap <silent> \ :bn<cr>
+  nnoremap <silent> <s-\> :bc<cr>
+  nnoremap <silent> <c-\> :tabn<cr>
+  nnoremap <silent> <c-s-\> :tabp<cr>
 
   "Open: fuzzy matching with CtrlP / MRU
   nnoremap <Leader>o :CtrlP<cr>
