@@ -1,14 +1,74 @@
 {
     "editor.fontLigatures": true,
     "editor.fontFamily": "Iosevka, Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontSize": 15,
+    "editor.fontSize": 17,
+    "python.jediEnabled": false,
+    "window.zoomLevel": 0,
+
+    // Supposedly required to support modern Terraform syntax
+    "terraform.languageServer": {
+        "enabled": true
+    },
+
+    // TODO: Any way to make it use the default python on PATH?
+    "python.pythonPath": "/usr/local/bin/python3",
+    
+    // ==== VIM SETTINGS ====
+    // NOTE: vimrc support considered experimental by VS Code
+    "vim.vimrc.enable": true,
+    "vim.vimrc.path": "~/.vimrc",
+
     "vim.leader": ",",
     "vim.useSystemClipboard": true,
+    "vim.surround": true,
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": [";"],
             "after": [":"]
         }
     ],
-    "python.jediEnabled": false
+
+    // Required to make key-chord bindings work without interferring with normal typing
+    // Sets timeout for sequential keybindings
+    "vim.timeout": 100,
+    // Workarounds for missing vim-arpeggio functionality to support key chords
+    "vim.insertModeKeyBindingsNonRecursive": [
+        {
+            "before": [ "j", "k" ],
+            "after": [ "<Esc>" ]
+        }, 
+        {
+            "before": [ "k", "j" ],
+            "after": [ "<Esc>" ]
+        },
+        {
+            "before": [ "l", "k" ],
+            "after": [ "<Esc>", ":", "w", "<Enter>" ]
+        }, 
+        {
+            "before": [ "k", "l" ],
+            "after": [ "<Esc>", ":w", "<Enter>" ]
+        }
+    ],
+    // TODO: Why don't these work?
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [ "j", "k" ],
+            "after": [ "<Esc>" ]
+        }, 
+        {
+            "before": [ "k", "j" ],
+            "after": [ "<Esc>" ]
+        },
+        {
+            "before": [ "l", "k" ],
+            "after": [ "<Esc>", ":", "w", "<Enter>" ]
+        }, 
+        {
+            "before": [ "k", "l" ],
+            "after": [ "<Esc>", ":w", "<Enter>" ]
+        }
+    ],
+    "window.autoDetectColorScheme": true,
+    "workbench.colorTheme": "Solarized Light"
 }

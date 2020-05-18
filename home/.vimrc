@@ -95,6 +95,7 @@ set nocompatible "Disable obsolete junk
   Plug 'vim-scripts/groovyindent-unix'
   Plug 'elubow/cql-vim'
   Plug 'cespare/vim-toml'
+  Plug 'tsandall/vim-rego'
 
   "Integrated Development / Language support
   "For stuff that goes beyond mere syntax highlighting
