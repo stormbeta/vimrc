@@ -1,3 +1,9 @@
+# Editor Config Repo
+
+Mostly vim, but also stores some other misc + VS Code
+
+# Vim Config
+
 Basic Settings
 --------------
 * scrolloff to ensure context always shown above and below cursor

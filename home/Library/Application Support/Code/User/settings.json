@@ -3,7 +3,7 @@
     "editor.fontFamily": "Iosevka, Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 17,
     "python.jediEnabled": false,
-    "window.zoomLevel": 0,
+    "window.zoomLevel": 1,
 
     // Supposedly required to support modern Terraform syntax
     "terraform.languageServer": {

@@ -565,8 +565,11 @@ endif " }}}
   "avoid excessive use of shift
   Arpeggio inoremap l; :
   Arpeggio inoremap ;' "
-  Arpeggio inoremap f9 (
-  Arpeggio inoremap f0 )
+  Arpeggio inoremap i9 (
+  Arpeggio inoremap o0 )
+  Arpeggio inoremap op {
+  Arpeggio inoremap p[ }
+  Arpeggio inoremap o0 )
   Arpeggio inoremap kl <Esc>:w<cr>
   "Arpeggio nnoremap lk :w<cr>
 
