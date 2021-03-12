@@ -23,6 +23,9 @@ set timeoutlen=100
 
 "Emulates vim-surround
 set surround
+" Enable smarter line joining
+set ideajoin
 
 "Use system clipboard like civilized folk
 set clipboard+=unnamed
+

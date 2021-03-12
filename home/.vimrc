@@ -14,6 +14,9 @@ set nocompatible "Disable obsolete junk
   "Required as there's no separate repo for the nginx vim settings
   set rtp+=~/.vim/plugged/nginx
 
+  "TODO: Conditional on fzf being installed
+  set rtp+=/usr/local/opt/fzf
+
   "Initialize vim-plug
   call plug#begin('~/.vim/plugged')
 
@@ -36,12 +39,12 @@ set nocompatible "Disable obsolete junk
   Plug 'tap349/vim-extradite'
   Plug 'tpope/vim-fugitive'
 
+  "TODO: not all of these are still used, or need updated keybinds
   "Misc / uncategorized
   Plug 'mhinz/vim-signify'
   "Causes problems with buffer swapping
   "Plug 'juanpabloaj/ShowMarks'
   Plug 'scrooloose/nerdcommenter'
-  "Plug 'sjl/gundo.vim' " No longer maintained :(
   Plug 'mbbill/undotree'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
@@ -90,12 +93,11 @@ set nocompatible "Disable obsolete junk
   "Plug 'chr4/sslsecure.vim'
   Plug 'saltstack/salt-vim'
   Plug 'elmcast/elm-vim'
-  Plug 'b4b4r07/vim-hcl'
   Plug 'udalov/kotlin-vim'
   Plug 'vim-scripts/groovyindent-unix'
-  Plug 'elubow/cql-vim'
+  Plug 'elubow/cql-vim'                " Cassandra Query Language
   Plug 'cespare/vim-toml'
-  Plug 'tsandall/vim-rego'
+  Plug 'tsandall/vim-rego'             " OpenPolicyAgent / Rego
 
   "Integrated Development / Language support
   "For stuff that goes beyond mere syntax highlighting
@@ -106,7 +108,8 @@ set nocompatible "Disable obsolete junk
   "Plug 'slashmili/alchemist.vim' " Elixir
   "Plug 'tpope/vim-fireplace'     " Clojure
   "Plug 'racer-rust/vim-racer'    " Rust
-  Plug 'vim-syntastic/syntastic'
+  "NOTE: Can cause performance problems in some languages
+  Plug 'vim-syntastic/syntastic'  " Misc / Generic
 
   "Version dependent
   if version >= 704
@@ -436,9 +439,9 @@ endif " }}}
 
   "Like alt+tab, but for buffers
   nnoremap <silent> \ :bn<cr>
-  nnoremap <silent> <s-\> :bc<cr>
+  "nnoremap <silent> <s-\> :bc<cr>
   nnoremap <silent> <c-\> :tabn<cr>
-  nnoremap <silent> <c-s-\> :tabp<cr>
+  "nnoremap <silent> <c-s-\> :tabp<cr>
 
   "Open: fuzzy matching with CtrlP / MRU
   nnoremap <Leader>o :CtrlP<cr>
@@ -532,6 +535,8 @@ endif " }}}
 "}}}
 
 " NOTE: HERE BE DRAGONS BELOW
+
+"TODO: Is there a way to 'auto-mark' locations?
 
 "Commands (ARPEGGIO) {{{
   "Arpeggio: Bindings (must come first)
