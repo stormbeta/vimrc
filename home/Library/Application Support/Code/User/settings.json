@@ -70,5 +70,15 @@
         }
     ],
     "window.autoDetectColorScheme": true,
-    "workbench.colorTheme": "Solarized Light"
+    "workbench.colorTheme": "Solarized Light",
+    "vim.statusBarColorControl": true,
+    "vim.enableNeovim": true,
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f"
+    },
+    "vim.commandLineModeKeyBindings": [
+    
+    ]
 }
