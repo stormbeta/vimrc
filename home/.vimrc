@@ -315,7 +315,7 @@ endif " }}}
   set softtabstop=2 "Ensure spaces can be easily deleted
   set shiftwidth=2  "?
   set expandtab     "Enable for tabs to become spaces
-  let g:jsonnet_fmt_options = '--indent 2'
+  let g:jsonnet_fmt_options = '--indent 2 --sort-imports --max-blank-lines 2 --string-style s --comment-style s'
 "}}}
 
 "Search options{{{
