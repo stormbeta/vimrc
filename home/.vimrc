@@ -151,10 +151,11 @@ set nocompatible "Disable obsolete junk
   call arpeggio#load()   "Key chord binding!
 "}}}
 
-if $KEYBOARD_LAYOUT == "Colemak"
-  nmap ; p
-  nmap y o
-endif
+" IdeaVim doesn't understand if/else and breaks
+"if $KEYBOARD_LAYOUT == "Colemak"
+  "nmap ; p
+  "nmap y o
+"endif
 
 let mapleader = ","    "<Leader> = ','
 
@@ -173,6 +174,7 @@ let mapleader = ","    "<Leader> = ','
   au BufReadPost *.cfg.erb setlocal filetype=haproxy
   au BufReadPost *.ctmpl setlocal filetype=gotexttmpl
   au BufReadPost *.libjsonnet setlocal filetype=jsonnet
+  au BufReadPost *.libsonnet setlocal filetype=jsonnet
   au BufNewFile,BufRead *.pp setf ruby
   au FileType go setlocal noexpandtab list listchars=tab:\ \ ,trail:· "Show trailing whitespace"
 "}}}
@@ -342,7 +344,7 @@ endif " }}}
   set sidescrolloff=5 "Auto-scrolls screen near horizontal
   set updatetime=2000 "Affects visual marker indicators e.g. git status
   set modelines=0     "Modelines are a security risk
-  set diffopt+=iwhite "Ignore whitespace in diff mode
+  "set diffopt+=iwhite "Ignore whitespace in diff mode
 
   "Auto-formatting
   set textwidth=100    " Set wrap width for gq, auto-wrap comments
@@ -552,11 +554,12 @@ endif " }}}
   "Arpeggio nnoremap we :Switch<cr>
   Arpeggio nmap we ysiW
   "EasyMotion:
+
   "Arpeggio nnoremap we <Leader>w
   "Arpeggio nmap df <Plug>(easymotion-bd-w)
   Arpeggio nmap df <Plug>(easymotion-prefix)
   "Comment:
-  call arpeggio#map('nv','',1,'re',',c ')
+  call arpeggio#map('nv','',1,'re',',c <enter>')
   "Arpeggio nnoremap fg [{zf]}
   "au FileType java Arpeggio imap ui <c-x><c-u>
   Arpeggio nnoremap /. :%!perl -pe 's//'<left><left>
