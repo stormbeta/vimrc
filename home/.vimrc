@@ -24,6 +24,7 @@ set nocompatible "Disable obsolete junk
   set runtimepath^=~/.vim/plugged/ctrlp.vim
 
   "vim-plug:
+  " TODO: Consider alternatives to vim-plugged as there may be newer package managers now
 
   "Special
   Plug 'kana/vim-arpeggio'
@@ -68,12 +69,15 @@ set nocompatible "Disable obsolete junk
   Plug 'reedes/vim-textobj-sentence'
 
   "Theming/UI
-  "NOTE: airline is pretty slow even with the performance tweaks enabled
-  "Plug 'vim-airline/vim-airline'
-  "Plug 'vim-airline/vim-airline-themes'
   Plug 'mkitt/tabline.vim'
   Plug 'itchyny/lightline.vim'
-  Plug 'altercation/vim-colors-solarized'
+
+  if has('nvim')
+    Plug 'lifepillar/vim-solarized8', {'branch': 'neovim'}
+  else
+    "Plug 'lifepillar/vim-solarized8'
+    Plug 'altercation/vim-colors-solarized'
+  endif
 
   "Syntax highlighting
   Plug 'kchmck/vim-coffee-script'
@@ -254,18 +258,14 @@ endif " }}}
 "}}}
 
 "Theme and color settings{{{
-  "Only enable for generating promptline snapshot
-  "colorscheme solarized
-  "set t_Co=256
-  "let g:solarized_termcolors=256
 
   "Automatically use dark/light background
   let hour = strftime("%H") " Set the background light from 7am to 7pm
-  if 7 <= hour && hour < 19
+  "if 7 <= hour && hour < 19
     set background=light
-  else " Set to dark from 7pm to 7am
-    set background=dark
-  endif
+  "else " Set to dark from 7pm to 7am
+    "set background=dark
+  "endif
   "if $ITERM_PROFILE == "Light"
     "set background=light
   "else
@@ -273,10 +273,15 @@ endif " }}}
   "endif
 
   "Theme:
-  colorscheme solarized
-
-  "General:
-  set t_Co=256
+  if has('nvim')
+    set termguicolors
+    autocmd vimenter * ++nested colorscheme solarized8
+    colorscheme solarized8
+  else
+    colorscheme solarized
+    set t_Co=256
+    let g:solarized_termcolors=256
+  end
 
   "Lightline:
   let g:lightline = {
@@ -290,26 +295,17 @@ endif " }}}
     \ },
     \ }
 
-  "Airline:
-  "let g:airline_powerline_fonts = 1
-  "let g:airline#extensions#tabline#enabled = 1
-  "let g:airline#extensions#tabline#left_sep = ' '
-  "let g:airline#extensions#tabline#left_alt_sep = '|'
-  ""let g:airline_theme='solarized'
-  ""Airline Performance workarounds
-  "let g:airline_highlighting_cache = 1
-  "let g:airline_theme='dark_minimal'
-
   "Allows transparent terminal background to persist within vim
   "highlight Normal ctermbg=none
   "highlight NonText ctermbg=none
 
+  "TODO: May no longer be relevant in modern vim
   "Enable italics if custom terminfo available
   "See: https://github.com/stormbeta/bashrc/blob/master/home/.bashrc#L7
-  if $TERM =~ "italic"
-    highlight Comment cterm=italic
-  endif
-  highlight Todo cterm=underline
+  "if $TERM =~ "italic"
+    "highlight Comment cterm=italic
+  "endif
+  "highlight Todo cterm=underline
 "}}}
 
 "Indent settings{{{
