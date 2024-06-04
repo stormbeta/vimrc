@@ -98,13 +98,15 @@ set nocompatible "Disable obsolete junk
   Plug 'elubow/cql-vim'                " Cassandra Query Language
   Plug 'cespare/vim-toml'
   Plug 'tsandall/vim-rego'             " OpenPolicyAgent / Rego
+  Plug 'terrastruct/d2-vim'            " D2 Diagramming Tool
 
   "Integrated Development / Language support
   "For stuff that goes beyond mere syntax highlighting
-  Plug 'fatih/vim-go'             " Golang
+  " Removed - this plugin has gotten absurdly heavyweight and breaks simple editing
+  "Plug 'fatih/vim-go'             " Golang
   Plug 'google/vim-jsonnet'       " Jsonnet autoformat/linting
-  Plug 'tpope/vim-rails'
-  Plug 'tpope/vim-db'
+  "Plug 'tpope/vim-rails'
+  "Plug 'tpope/vim-db'
   "Plug 'slashmili/alchemist.vim' " Elixir
   "Plug 'tpope/vim-fireplace'     " Clojure
   "Plug 'racer-rust/vim-racer'    " Rust
@@ -113,7 +115,7 @@ set nocompatible "Disable obsolete junk
 
   "Version dependent
   if version >= 704
-    Plug 'ajh17/VimCompletesMe'
+    "Plug 'ajh17/VimCompletesMe'
     " YouCompleteMe requires manual installation
     "Plug 'Valloric/YouCompleteMe'
 
